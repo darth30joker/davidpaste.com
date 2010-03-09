@@ -1,0 +1,10 @@
+1. 要求用户可以注册和修改资料
+2. 登录与否均可发布paste
+3. 只有登录用户可以修改和删除paste
+4. 登录用户可以将paste加入收藏夹
+5. 如果一个加入收藏夹的paste被删除, 则该收藏夹中看不到该paste
+6. 每个paste都有自己的tags
+7. 每个paste都有自己的语法规则(即syntax)
+8. 有一个排名系统, 里面列出用户排名(活跃程度), tag排名(哪个tag底下的paste多), paste排名(哪个paste访问多和评论多), syntax排名(哪个syntax下面的paste多)
+9. 登录用户可以评论paste
+10. 根据多种规则做RSS. 可以按用户, syntax, tag, 日期
