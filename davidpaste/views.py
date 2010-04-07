@@ -4,9 +4,8 @@ import time
 import cgi
 import random
 import web
-from forms import commentForm
-from settings import db, render, pageCount
-from cache import mcache
+from forms import *
+from settings import render, pageCount
 from sqlalchemy.orm import scoped_session, sessionmaker
 from models import *
 from utils import Pagination, getCaptcha
@@ -17,17 +16,14 @@ d = dict()
 def getTags():
     return web.ctx.orm.query(Tag).order_by('tags.name').all()
 
-def getLinks():
-    return web.ctx.orm.query(Link).order_by('links.name').all()
+def getSyntaxs():
+    return web.ctx.orm.query(Syntax).order_by('syntaxs.name').all()
 
 def my_loadhook():
     web.ctx.session = web.config._session
-    d['startTime'] = time.time()
 
 def my_handler(handler):
     web.ctx.orm = scoped_session(sessionmaker(bind=engine))
-    d['tags'] = getTags()
-    d['links'] = getLinks()
     try:
         return handler()
     except web.HTTPError:
@@ -48,7 +44,6 @@ class captcha:
 
 class index(object):
     def GET(self):
-        # 读取当前页的文章
         i = web.input(page=1)
         ids = [int(one.id) for one in web.ctx.orm.query(Entry.id).all()]
         randomEntries = [web.ctx.orm.query(Entry).filter_by(id=id).first() for id in random.sample(ids, 5)]
@@ -60,27 +55,15 @@ class index(object):
         d['randomEntries'] = randomEntries
         return render.index(**d)
 
-class entry(object):
-    def getEntry(self, slug):
-        if slug:
-            entry = web.ctx.orm.query(Entry).filter_by(slug=slug).first()
-            i = web.input(page = 1)
-            commentCount = web.ctx.orm.query(Comment).filter_by(entryId=entry.id).count()
-            p = Pagination(int(commentCount), 5, int(i.page))
-            entry.comments = web.ctx.orm.query(Comment).filter_by(entryId=entry.id)[p.start:p.limit]
-            return (entry, p)
+class paste_view(object):
+    def getPaste(self, id):
+        return web.ctx.orm.query(Paste).filter_by(id=id).first()
 
-    def GET(self, slug):
-        entry, p = self.getEntry(slug)
-        entry.viewNum = entry.viewNum + 1
-        f = commentForm()
-        d['p'] = p
-        d['entry'] = entry
-        d['f'] = f
-        d['usedTime'] = time.time() - d['startTime']
-        return render.entry(**d)
+    def GET(self, id):
+        d['paste'] = self.getPaste(id)
+        return render.paste_view(**d)
 
-    def POST(self, slug):
+    def POST(self, id):
         entry, p = self.getEntry(slug)
         f = commentForm()
         if f.validates():
@@ -96,16 +79,37 @@ class entry(object):
             d['usedTime'] = time.time() - d['startTime']
             return render.entry(**d)
 
-class page(object):
-    def GET(self, slug):
-        page = web.ctx.orm.query(Page).filter_by(slug=slug).first()
-        if page:
-            d['usedTime'] = time.time() - d['startTime']
-            d['page'] = page
-            return render.page(**d)
+class paste_create(object):
+    def GET(self):
+        d['f'] = paste_form()
+        d['syntaxs'] = getSyntaxs()
+        return render.paste_create(**d)
+
+    def POST(self):
+        f = paste_form()
+        if f.validates():
+            paste = Paste()
+            paste.user_id = web.ctx.session.user_id
+            paste.content = f.content.value
+            paste.syntax = f.syntax.value
+            paste.title = f.title.value
+            web.ctx.orm.add(paste)
+            if f.tags.value:
+                for t in f.tags.value.split(','):
+                    tag = web.ctx.orm.query(Tag).filter_by(name=t.strip().lower()).first()
+                    if not tag:
+                        tag = Tag()
+                        tag.name = t.strip().lower()
+                        web.ctx.orm.add(tag)
+                    paste.tags.append(tag)
+            raise web.seeother(paste.get_url())
+        else:
+            d['f'] = f
+            d['syntaxs'] = getSyntaxs()
+            return render.paste_create(**d)
 
 class tag(object):
-    def GET(self, slug):
+    def GET(self, name):
         i = web.input(page=1)
         try:
             page = int(i.page)

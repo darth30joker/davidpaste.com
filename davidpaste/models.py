@@ -5,26 +5,51 @@ from sqlalchemy import Column, Integer, String, Text, DateTime
 from sqlalchemy.orm import relation, backref
 from sqlalchemy.ext.declarative import declarative_base
 
-engine = create_engine('mysql://root:root@localhost/davidblog?charset=utf8', echo=False)
+engine = create_engine('sqlite:///db.sqlite', echo=True)
 
 Base = declarative_base()
 metadata = Base.metadata
 
 paste_tag = Table('paste_tag', metadata,
-            Column('paste_id', Integer, ForeignKey('entries.id')),
+            Column('paste_id', Integer, ForeignKey('pastes.id')),
             Column('tag_id', Integer, ForeignKey('tags.id'))
         )
+
+class Syntax(Base):
+    __tablename__ = 'syntaxs'
+
+    syntax = Column(String, primary_key=True)
+    name = Column(String)
+
+    def __init__(syntax, name):
+        self.syntax = syntax
+        self.name = name
+
+    def __repr__(self):
+        return "<Syntax '%s' - %s>" % (self.syntax, self.name)
+
+class User(Base):
+    __tablename__ = 'users'
+
+    id = Column(Integer, primary_key=True)
+    nickname = Column(String)
+    email = Column(String)
+
+    def __init__(self, email):
+        self.email = email
+
+    def __repr__(self):
+        return "<User %s AT <%s>>" % (self.nickname, self.email)
 
 class Comment(Base):
     __tablename__ = 'comments'
 
     id = Column(Integer, primary_key=True)
-    paste_id = Column(Integer, ForeignKey('entries.id'))
-    email = Column(String)
-    username = Column(String)
-    url = Column(String)
+    paste_id = Column(Integer, ForeignKey('pastes.id'))
     comment = Column(Text)
     created_time = Column(DateTime)
+
+    user_id = Column(Integer, ForeignKey('users.id'))
 
     def __init__(self, paste_id, username, email, url, comment):
         self.paste_id = paste_id
@@ -39,16 +64,17 @@ class Paste(Base):
 
     id = Column(Integer, primary_key=True)
     title = Column(String, default="untitled")
-    syntax = Column(Integer)
     content = Column(Text)
     created_time = Column(DateTime, default=datetime.now())
     modified_time = Column(DateTime, default=datetime.now())
     view_num = Column(Integer, default=0)
     comment_num = Column(Integer, default=0)
 
-    tags = relation('Tag', secondary=entry_tag, backref='entries')
+    user_id = Column(Integer, ForeignKey('users.id'))
+    syntax = Column(String, ForeignKey('syntaxs.syntax'))
+    tags = relation('Tag', secondary=paste_tag, backref='pastes')
     comments = relation(Comment, order_by=Comment.created_time,
-                backref="entries"
+                backref="pastes"
             )
 
     def __init__(self, title, syntax, content):
@@ -58,6 +84,9 @@ class Paste(Base):
 
     def __repr__(self):
        return "<Paste ('%s')>" % self.id
+
+    def get_url(self):
+        return '/paste/%d/' % self.id
 
 class Tag(Base):
     __tablename__ = 'tags'
@@ -72,9 +101,17 @@ class Tag(Base):
     def __repr__(self):
         return "<Tag ('%s')>" % self.name
 
+    def get_url(self):
+        return '/tag/%d/' % self.name
+
 class Admin(Base):
     __tablename__ = 'admins'
 
     id = Column(Integer, primary_key=True)
     username = Column(String)
     password = Column(String)
+
+if __name__ == "__main__":
+    metadata.create_all(engine)
+
+
