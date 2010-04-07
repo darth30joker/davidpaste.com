@@ -7,6 +7,7 @@
         <meta name="author" content="davidx, 灰太狼大王" />
         <meta name="keywords" content="davidx, 灰太狼大王, 大卫粘贴, python, webpy, davidpaste" />
         <link rel="stylesheet" type="text/css" href="/static/css/styles.css" />
+        <link rel="stylesheet" type="text/css" href="/static/css/syntaxs/default.css" />
         <link rel="SHORTCUT ICON" href="/static/favicon.ico" />
         <script type="text/javascript" src="/static/js/jquery-1.3.2.min.js"></script>
     </head>
@@ -14,8 +15,7 @@
         <div id="page">
             <div id="head">
                 <div id="logo">
-                    <h1><a href="/">大卫粘贴</a><span>davidpaste 0.3beta</span></h1>
-                    <p>技术改变生活</p>
+					<h1><a href="/"><img src="/static/images/logo.png" />DAVIDPASTE</a><span> 0.3β</span></h1>
                 </div>
                 <div id="menu">
                     <ul>
@@ -23,6 +23,7 @@
                         <li style="font-size:16px;"><a href="/rss.xml">订阅大卫粘贴</a></li>
                     </ul>
                 </div>
+				<div style="clear:both;"></div>
             </div>
             <div id="main">{% block content %}{% endblock %}</div>
             <div id="foot">

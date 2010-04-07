@@ -1,0 +1,93 @@
+/** CSS Reset **/
+* { padding:0; margin:0; }
+a { text-decoration:none; }
+img { border:none; }
+.clearfloat { clear:both; }
+
+/** body **/
+body {
+	background-color:#DEDEDE;
+}
+#page {
+	width:960px;
+	margin:0 auto;
+}
+#head {
+	background-color:#002344;
+}
+#logo {
+	float:left;
+}
+#logo h1 {
+	color:#fff;
+}
+#logo h1 a:link,
+#logo h1 a:visited {
+	color:#fff;
+}
+#logo h1 span {
+	font-size:14px;
+}
+#menu {
+	width:200px;
+	margin:0 auto;
+	padding-top:30px;
+}
+#menu ul {
+	list-style:none;
+}
+#menu ul li {
+	display:inline;
+}
+#main {
+	background-color:#fff;
+}
+#foot {
+	background-color:#002344;
+    font-size:14px;
+	color:#fff;
+	line-height:20px;
+	text-align:center;
+	padding:10px 0;
+	-moz-border-radius-bottomleft:7px;
+	-moz-border-radius-bottomright:7px;
+}
+#foot a:link,
+#foot a:visited {
+	text-decoration:underline;
+	color:#A76B2E;
+}
+
+/** paste_view page **/
+#wrapper {
+	width:700px;
+	margin:0 auto;
+	padding:40px 0;
+}
+#wrapper p {
+	margin:5px 0;
+}
+#wrapper p label {
+	margin:20px;
+}
+#wrapper p span {
+	width:200px;
+	background-color:#DFE0B3;
+}
+#wrapper p a {
+	text-decoration:underline;
+}
+#wrapper p a:link,
+#wrapper p a:visited {
+	color:#FF6C76;
+}
+.syntax {
+	font-size:14px;
+}
+
+/** paste_create page **/
+#wrapper p textarea {
+	width:700px;
+	height:400px;
+	margin-left:20px;
+}

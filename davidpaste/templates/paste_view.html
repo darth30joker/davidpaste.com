@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}{{ paste.title }} - 查看代码{% endblock %}
+{% block content %}
+<div id="wrapper">
+	<p><label>标题</label><span>{{ paste.title }}</span><label>语法</label><span>{{ paste.syntax.name }}</span></p>
+	<p><label>标签</label>{% for tag in paste.tags %}<a href="{{ tag.get_url() }}">{{ tag.name }}</a>{% endfor %}</p>
+	{{ paste.content | highlight(paste.syntax.syntax) }}
+</div>
+{% endblock %}
