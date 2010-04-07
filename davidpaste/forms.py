@@ -11,7 +11,8 @@ captcha_validator = form.Validator('Captcha Code',
         lambda x: x == web.config._session.captcha)
 
 paste_form = form.Form(
-        form.Textbox('title', form.notnull),
+        form.Textbox('title'),
+        form.Textbox('tags'),
         form.Dropdown('syntax', form.notnull),
         form.Textarea('content', form.notnull),
         form.Textbox('captcha', captcha_validator),

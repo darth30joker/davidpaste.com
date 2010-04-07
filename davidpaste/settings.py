@@ -7,7 +7,7 @@ from templatefilters import *
 import os
 
 __all__ = [
-        'pageCount', 'db', 'render', 'render_admin'    
+        'pageCount', 'render', 'render_admin'    
     ]
 pageCount = 5
 
@@ -20,9 +20,8 @@ def getRender():
         os.getcwd() + '/templates',
         encoding = 'utf-8',
     )
-    #myFilters = {'avatar':avatar,'notnull':notnull,
-    #    'formnote':formnote, 'content':content}
-    #render._lookup.filters.update(myFilters)
+    myFilters = {'avatar':avatar, 'highlight':highlight}
+    render._lookup.filters.update(myFilters)
     return render
 render = getRender()
 

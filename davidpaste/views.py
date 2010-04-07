@@ -13,6 +13,10 @@ from markdown import markdown
 
 d = dict()
 
+outputs = (
+        'html', 'code'
+    )
+
 def getTags():
     return web.ctx.orm.query(Tag).order_by('tags.name').all()
 
@@ -60,8 +64,17 @@ class paste_view(object):
         return web.ctx.orm.query(Paste).filter_by(id=id).first()
 
     def GET(self, id):
+        i = web.input(output='html')
+        output = 'html'
+        if i.output in outputs:
+            output = i.output
         d['paste'] = self.getPaste(id)
-        return render.paste_view(**d)
+        if output == 'html':
+            d['paste'].view_num = d['paste'].view_num + 1 
+            return render.paste_view(**d)
+        elif output == 'code':
+            web.header('Content-Type', 'text')
+            return render.paste_view_code(**d)
 
     def POST(self, id):
         entry, p = self.getEntry(slug)
@@ -91,22 +104,22 @@ class paste_create(object):
             paste = Paste()
             paste.user_id = web.ctx.session.user_id
             paste.content = f.content.value
-            paste.syntax = f.syntax.value
-            paste.title = f.title.value
+            paste.syntax_id = int(f.syntax.value)
+            if f.title.value:
+                paste.title = f.title.value
             web.ctx.orm.add(paste)
             if f.tags.value:
                 for t in f.tags.value.split(','):
                     tag = web.ctx.orm.query(Tag).filter_by(name=t.strip().lower()).first()
                     if not tag:
-                        tag = Tag()
-                        tag.name = t.strip().lower()
+                        tag = Tag(t.strip().lower())
                         web.ctx.orm.add(tag)
                     paste.tags.append(tag)
-            raise web.seeother(paste.get_url())
-        else:
-            d['f'] = f
-            d['syntaxs'] = getSyntaxs()
-            return render.paste_create(**d)
+            if paste:
+                raise web.seeother(paste.get_url())
+        d['f'] = f
+        d['syntaxs'] = getSyntaxs()
+        return render.paste_create(**d)
 
 class tag(object):
     def GET(self, name):

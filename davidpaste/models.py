@@ -18,7 +18,8 @@ paste_tag = Table('paste_tag', metadata,
 class Syntax(Base):
     __tablename__ = 'syntaxs'
 
-    syntax = Column(String, primary_key=True)
+    id = Column(Integer, primary_key=True)
+    syntax = Column(String)
     name = Column(String)
 
     def __init__(syntax, name):
@@ -63,24 +64,24 @@ class Paste(Base):
     __tablename__ = 'pastes'
 
     id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('users.id'))
     title = Column(String, default="untitled")
     content = Column(Text)
+    syntax_id = Column(Integer, ForeignKey('syntaxs.id'))
     created_time = Column(DateTime, default=datetime.now())
     modified_time = Column(DateTime, default=datetime.now())
     view_num = Column(Integer, default=0)
     comment_num = Column(Integer, default=0)
 
-    user_id = Column(Integer, ForeignKey('users.id'))
-    syntax = Column(String, ForeignKey('syntaxs.syntax'))
+    #user = relationship()
+    syntax = relation(Syntax, backref=backref('syntaxs'))
     tags = relation('Tag', secondary=paste_tag, backref='pastes')
     comments = relation(Comment, order_by=Comment.created_time,
                 backref="pastes"
             )
 
-    def __init__(self, title, syntax, content):
-        self.title = title
-        self.syntax = syntax
-        self.content = content
+    def __init__(self):
+        pass
 
     def __repr__(self):
        return "<Paste ('%s')>" % self.id
@@ -102,7 +103,7 @@ class Tag(Base):
         return "<Tag ('%s')>" % self.name
 
     def get_url(self):
-        return '/tag/%d/' % self.name
+        return '/tag/%s/' % self.name
 
 class Admin(Base):
     __tablename__ = 'admins'

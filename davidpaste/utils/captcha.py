@@ -10,7 +10,7 @@ def getCaptcha():
     for x in range(0, 100):
         for y in range(0, 60):
             draw.point((x, y), (135, 191, 107))
-    font = ImageFont.truetype('/FreeMono.ttf', 18)
+    font = ImageFont.truetype('FreeMono.ttf', 18)
     alphabet = 'abcdefghijklmnopqrstuvwxyz'
     word = ''
     for i in range(5):
