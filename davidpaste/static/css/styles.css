@@ -60,9 +60,9 @@ body {
 
 /** paste_view page **/
 #wrapper {
-	width:700px;
-	margin:0 auto;
-	padding:40px 0;
+	width:680px;
+	padding:40px;
+	float:left;
 }
 #wrapper p {
 	margin:5px 0;
@@ -89,5 +89,11 @@ body {
 #wrapper p textarea {
 	width:700px;
 	height:400px;
-	margin-left:20px;
+}
+
+/** advertise page **/
+#advertise {
+	width:160px;
+	padding:20px;
+	float:left;
 }

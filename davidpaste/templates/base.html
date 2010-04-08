@@ -6,6 +6,7 @@
         <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
         <meta name="author" content="davidx, 灰太狼大王" />
         <meta name="keywords" content="davidx, 灰太狼大王, 大卫粘贴, python, webpy, davidpaste" />
+		<meta name="google-site-verification" content="i1KC5l-2ii3CteKoJXKVOLjGbRsl3RquEGjKmRvWGC8" />
         <link rel="stylesheet" type="text/css" href="/static/css/styles.css" />
         <link rel="stylesheet" type="text/css" href="/static/css/syntaxs/default.css" />
         <link rel="SHORTCUT ICON" href="/static/favicon.ico" />
@@ -25,7 +26,11 @@
                 </div>
 				<div style="clear:both;"></div>
             </div>
-            <div id="main">{% block content %}{% endblock %}</div>
+			<div id="main">
+				<div id="wrapper">{% block content %}{% endblock %}</div>
+				<div id="advertise">{% include '_advertise.html' %}</div>
+				<div style="clear:both;"></div>
+			</div>
             <div id="foot">
                 <p>版权所有©2009 <a href="http://davidx.me/">David Xie</a> | 如有转贴, 请注明出处. @转自<a href="http://davidpaste.com/">&lt;大卫粘贴:http://davidpaste.com/&gt;</a> | Powered by <a href="http://webpy.org/" target="_blank">web.py</a></p>
             </div>

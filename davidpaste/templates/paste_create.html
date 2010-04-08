@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}发表新代码{% endblock %}
 {% block content %}
-<div id="wrapper">
 	<form action="/" method="POST">
 		<p><label>标题</label><input type="text" name="title" /><label>语法</label><select name="syntax">{% for syntax in syntaxs %}
 			<option value="{{ syntax.id }}">{{ syntax.name }}</option>{% endfor %}</select></p>
@@ -10,5 +9,4 @@
 		<p><label>验证码</label><input type="text" name="captcha" /><img src="/captcha/" /></p>
 		<p><label>&nbsp;</label><input type="submit" value="发表" /></p>
 	</form>
-</div>
 {% endblock %}
