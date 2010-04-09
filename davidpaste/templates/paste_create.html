@@ -4,9 +4,9 @@
 	<form action="/" method="POST">
 		<p><label>标题</label><input type="text" name="title" /><label>语法</label><select name="syntax">{% for syntax in syntaxs %}
 			<option value="{{ syntax.id }}">{{ syntax.name }}</option>{% endfor %}</select></p>
-		<p><textarea name="content"></textarea></p>
 		<p><label>标签</label><input type="text" name="tags" /></p>
-		<p><label>验证码</label><input type="text" name="captcha" /><img src="/captcha/" /></p>
+		<p><textarea name="content"></textarea></p>
+		<p><label>验证码</label><input type="text" name="captcha" /><img src="/captcha/" style="border:1px solid black; padding:1px;margin-left:10px;" /></p>
 		<p><label>&nbsp;</label><input type="submit" value="发表" /></p>
 	</form>
 {% endblock %}

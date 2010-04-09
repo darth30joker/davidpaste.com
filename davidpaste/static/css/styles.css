@@ -7,6 +7,7 @@ img { border:none; }
 /** body **/
 body {
 	background-color:#DEDEDE;
+	font-family:"DejaVu Sans MONO", "Consolas", "BitStream Vera Sans Mono";
 }
 #page {
 	width:960px;
@@ -20,6 +21,7 @@ body {
 }
 #logo h1 {
 	color:#fff;
+	margin-left:10px;
 }
 #logo h1 a:link,
 #logo h1 a:visited {
@@ -31,13 +33,17 @@ body {
 #menu {
 	width:200px;
 	margin:0 auto;
-	padding-top:30px;
+	padding-top:15px;
 }
 #menu ul {
 	list-style:none;
 }
 #menu ul li {
 	display:inline;
+}
+#menu ul li a:link,
+#menu ul li a:visited {
+	color:#fff;
 }
 #main {
 	background-color:#fff;
@@ -83,12 +89,39 @@ body {
 }
 .syntax {
 	font-size:14px;
+	font-family:"Consolas, Courier New,BitStream Vera Sans Mono,Lucida Console";
 }
 
 /** paste_create page **/
-#wrapper p textarea {
+#wrapper form p {
+	clear:both;
+	height:24px;
+	line-height:24px;
+}
+#wrapper form p label {
+	float:left;
+	width:60px;
+	margin:0;
+	padding-left:20px;
+	letter-spacing:4px;
+	font-size:14px;
+}
+#wrapper form p input,
+#wrapper form p select {
+	width:200px;
+	float:left;
+	height:22px;
+}
+#wrapper form p textarea {
+	float:left;
 	width:700px;
 	height:400px;
+	margin-bottom:10px;
+}
+#wrapper form p input,
+#wrapper form p select,
+#wrapper form p textarea {
+	border:1px solid #CCC;
 }
 
 /** advertise page **/
