@@ -1,6 +1,24 @@
+.syntaxtable {
+	border-collapse:collapse;
+	width:100%;
+}
+.syntaxtable td {
+	background-color:#272822;
+}
+.linenos {padding:0 5px;}
+.linenodiv pre {
+	line-height:20px;
+	color:white;
+}
 .syntax .hll { background-color: #49483e }
-.syntax  { color: #f8f8f2;padding:3px;line-height:16px;overflow-x:auto;border:2px solid #ccc; }
-.syntax pre { background-color:#272822;padding:10px;line-height:20px; }
+.syntax  {
+	color: #f8f8f2;
+	line-height:16px;
+	overflow-x:auto;
+	font-size:14px;
+	font-family:"Consolas, Courier New,BitStream Vera Sans Mono,Lucida Console";
+}
+.syntax pre { padding:10px;line-height:20px; }
 .syntax .c { color: #75715e } /* Comment */
 .syntax .err { color: #960050; background-color: #1e0010 } /* Error */
 .syntax .k { color: #66d9ef } /* Keyword */

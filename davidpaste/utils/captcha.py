@@ -5,17 +5,17 @@ def getCaptcha():
     """
     Generate a captcha image
     """
-    im = Image.new("RGB", (62, 20))
+    im = Image.new("RGB", (52, 20))
     draw = ImageDraw.Draw(im)
     for x in range(0, 100):
         for y in range(0, 60):
             draw.point((x, y), (255, 255, 255))
     font = ImageFont.truetype('FreeMono.ttf', 18)
-    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    alphabet = '0123456789'
     word = ''
-    for i in range(5):
+    for i in range(4):
         word = word + alphabet[random.randint(0, len(alphabet) -1)]
-    draw.text((4, 0), word, font=font, fill=(0, 0, 0))
+    draw.text((4, 0), word, font=font, fill=(226, 33, 33))
     f = cStringIO.StringIO()
     im.save(f, "GIF")
     f.seek(0)

@@ -72,13 +72,13 @@ body {
 }
 #wrapper p {
 	margin:5px 0;
+	font-size:14px;
 }
 #wrapper p label {
 	margin:20px;
 }
 #wrapper p span {
 	width:200px;
-	background-color:#DFE0B3;
 }
 #wrapper p a {
 	text-decoration:underline;
@@ -87,11 +87,10 @@ body {
 #wrapper p a:visited {
 	color:#FF6C76;
 }
-.syntax {
-	font-size:14px;
-	font-family:"Consolas, Courier New,BitStream Vera Sans Mono,Lucida Console";
+#code {
+	padding:3px;
+	border:2px solid #ccc;
 }
-
 /** paste_create page **/
 #wrapper form p {
 	clear:both;

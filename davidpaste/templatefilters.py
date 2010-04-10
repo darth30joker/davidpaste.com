@@ -15,5 +15,5 @@ def highlight(value, syntax):
     content = pygments.highlight(
             value,
             lexer,
-            HtmlFormatter(linenos=False, cssclass="syntax"))
+            HtmlFormatter(linenos=True, cssclass="syntax"))
     return content
