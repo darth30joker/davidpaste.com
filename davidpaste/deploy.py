@@ -3,16 +3,17 @@
 
 import web
 import views
-import admin
-
+#import admin
+web.debug = False
 urls = (
-        '/admin', admin.app_admin,
+        #'/admin', admin.app_admin,
 
-        '/', 'views.index',
-        '^/paste/(.*)/$', 'views.paste',
-        '^/syntax/(.*)/$', 'views.syntax',
+        '^/$', 'views.paste_create',
+        '^/paste/(.*)/$', 'views.paste_view',
         '^/tag/(.*)/$', 'views.tag',
         '^/captcha/$', 'views.captcha',
+        """
+        '^/syntax/(.*)/$', 'views.syntax',
         '^/rank/$', 'views.rank',
 
         '^/register/$', 'views.register',
@@ -20,17 +21,19 @@ urls = (
         '^/logout/$', 'views.logout',
 
         '^/rss.xml$', 'views.rss',
+        """
+        '^(.*)', 'views.notfound',
     )
 
 app = web.application(urls, globals(), autoreload = True)
 session = web.session.Session(
         app, web.session.DiskStore('sessions'),
-        initializer={'captcha': 0, 'isAdmin':0})
+        initializer={'user_id': 1, 'captcha': 0, 'isAdmin': 0})
 
 app.add_processor(web.loadhook(views.my_loadhook))
 app.add_processor(views.my_handler)
-#app.notfound = notfound
-#app.internalerror = internalerror
+app.notfound = views.notfound
+app.internalerror = views.internalerror
 
 def getSession():
     if '_session' not in web.config:

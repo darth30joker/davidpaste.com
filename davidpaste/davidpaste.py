@@ -22,6 +22,7 @@ urls = (
 
         '^/rss.xml$', 'views.rss',
         """
+        '^(.*)', 'views.notfound',
     )
 
 app = web.application(urls, globals(), autoreload = True)
@@ -31,8 +32,8 @@ session = web.session.Session(
 
 app.add_processor(web.loadhook(views.my_loadhook))
 app.add_processor(views.my_handler)
-#app.notfound = notfound
-#app.internalerror = internalerror
+app.notfound = views.notfound
+app.internalerror = views.internalerror
 
 def getSession():
     if '_session' not in web.config:

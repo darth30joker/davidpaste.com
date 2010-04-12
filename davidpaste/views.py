@@ -69,12 +69,15 @@ class paste_view(object):
         if i.output in outputs:
             output = i.output
         d['paste'] = self.getPaste(id)
-        if output == 'html':
-            d['paste'].view_num = d['paste'].view_num + 1 
-            return render.paste_view(**d)
-        elif output == 'code':
-            web.header('Content-Type', 'text')
-            return render.paste_view_code(**d)
+        if d['paste']:
+            if output == 'html':
+                d['paste'].view_num = d['paste'].view_num + 1 
+                return render.paste_view(**d)
+            elif output == 'code':
+                web.header('Content-Type', 'text')
+                return render.paste_view_code(**d)
+        else:
+            raise web.notfound()
 
     def POST(self, id):
         entry, p = self.getEntry(slug)
@@ -164,7 +167,9 @@ class rss(object):
         return rss
 
 def notfound():
-    return web.notfound("对不起, 您所访问的地址并不存在.")
+    #return web.notfound("对不起, 您所访问的地址并不存在.")
+    return web.notfound(render.notfound())
 
 def internalerror():
-    return web.internalerror("对不起, 网站遇到一个不可遇见的错误.")
+    #return web.internalerror("对不起, 网站遇到一个不可遇见的错误.")
+    return web.internalerror(render.servererror())
