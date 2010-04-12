@@ -4,7 +4,9 @@
 import web
 import views
 #import admin
+
 web.debug = False
+
 urls = (
         #'/admin', admin.app_admin,
 
@@ -25,7 +27,8 @@ urls = (
         '^(.*)', 'views.notfound',
     )
 
-app = web.application(urls, globals(), autoreload = True)
+#app = web.application(urls, globals(), autoreload = True)
+app = web.application(urls, globals())
 session = web.session.Session(
         app, web.session.DiskStore('sessions'),
         initializer={'user_id': 1, 'captcha': 0, 'isAdmin': 0})
