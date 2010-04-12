@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}标签 - {{ tag.name }}{% endblock %}
+{% block content %}
+	<ul id="paste_list">
+		{% for paste in pastes %}
+			<li><a href="{{ paste.get_url() }}">{{ paste.title }} @ {{ paste.created_time | date_format }}</a></li>
+		{% endfor %}
+	</ul>
+	<table id="pager">
+		<tr>
+			<td>{% if p.page > 1 %}<a href="{{ tag.get_url() }}?page={{ p.prev_page }}">上一页</a>{% endif %}</td>
+			<td>{{ p.page }}/{{ p.pages }}</td>
+			<td>{% if p.page < p.pages %}<a href="{{ tag.get_url() }}?page={{ p.next_page }}">下一页</a>{% endif %}</td>
+		</tr>
+	</table>
+{% endblock %}
