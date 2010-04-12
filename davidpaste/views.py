@@ -131,13 +131,12 @@ class tag(object):
             page = int(i.page)
         except:
             page = 1
-        tag = web.ctx.orm.query(Tag).filter_by(name=slug).first()
-        p = Pagination(len(tag.entries), 20, page)
-        entries = tag.entries[::-1][p.start:p.limit]
+        tag = web.ctx.orm.query(Tag).filter_by(name=name).first()
+        p = Pagination(len(tag.pastes), 20, page)
+        pastes = tag.pastes[::-1][p.start:p.limit]
         d['tag'] = tag
         d['p'] = p
-        d['entries'] = entries
-        d['usedTime'] = time.time() - d['startTime']
+        d['pastes'] = pastes
         return render.tag(**d)
 
 class rss(object):

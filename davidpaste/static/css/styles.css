@@ -129,3 +129,23 @@ body {
 	padding:20px;
 	float:left;
 }
+
+/** tag page **/
+#paste_list {
+	padding-left:20px;
+	font-size:14px;
+	min-height:550px;
+}
+#paste_list li a:link,
+#paste_list li a:visited {
+	color:black;
+}
+#paste_list li a:hover {
+	color:red;
+}
+
+/** pager **/
+#pager td {
+	width:200px;
+	text-align:center;
+}

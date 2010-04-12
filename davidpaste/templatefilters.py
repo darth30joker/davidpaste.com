@@ -17,3 +17,6 @@ def highlight(value, syntax):
             lexer,
             HtmlFormatter(linenos=True, cssclass="syntax"))
     return content
+
+def date_format(value, format='%Y-%m-%d %H:%M'):
+    return value.strftime(format)
