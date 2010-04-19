@@ -1,8 +1,6 @@
 #coding:utf-8
 from datetime import datetime
-import time
-import cgi
-import random
+import time, cgi, random, hashlib
 import web
 from forms import *
 from settings import render, pageCount
@@ -46,17 +44,60 @@ class captcha:
         web.ctx.session.captcha = captcha[0]
         return captcha[1].read()
 
-class index(object):
+class oauth(object):
     def GET(self):
-        i = web.input(page=1)
-        ids = [int(one.id) for one in web.ctx.orm.query(Entry.id).all()]
-        randomEntries = [web.ctx.orm.query(Entry).filter_by(id=id).first() for id in random.sample(ids, 5)]
-        entryCount = web.ctx.orm.query(Entry).count()
-        p = Pagination(entryCount, 5, int(i.page))
-        d['entries'] = web.ctx.orm.query(Entry).order_by('entries.createdTime DESC')[p.start:p.start + p.limit]
-        d['p'] = p
-        d['usedTime'] = time.time() - d['startTime']
-        d['randomEntries'] = randomEntries
+        import urllib2
+        sha = hashlib.sha1()
+        s.update(str(random.random))
+        post_data = 'scope=http://www.google.com/base/feeds/'
+        headers = {
+                'Content-Type':'application/x-www-form-urlencoded',
+                'Authorization':'OAuth',
+                'oauth_consumer_key':'davidpaste.com',
+                'oauth_signature_method':'HMAC-SHA1',
+                'oauth_signature':'24K+l1CC/rlFdWNAEp47s2v0',
+                'oauth_timestamp':str(int(time.time())),
+                'oauth_nonce':s.hexdigest(),
+                'oauth_callback':'http://davidpaste.com/login/',
+            }
+        req = urllib2.Request('https://www.google.com/accounts/OAuthGetRequestToken', post_data, headers)
+        try:
+            response = urllib2.urlopen(req)
+        except:
+            raise web.internalerror()
+        headers = response.headers
+        oauth_token = headers['oauth_token']
+        oauth_token_secret = headers['oauth_token_secret']
+        req = urllib2.Request('https://www.google.com/accounts/OAuthAuthorizeToken?oauth_token=%s&hl=zh_CN' % oauth_token)
+        try:
+            response = urllib2.urlopen(req)
+        except:
+            raise web.internalerror()
+
+class login(object):
+    def GET(self):
+        i = web.input(token=None, verifier=None)
+        if i.token and i.verifier:
+            import urllib2
+            sha = hashlib.sha1()
+            s.update(str(random.random))
+            headers = {
+                    'Content-Type':'application/x-www-form-urlencoded',
+                    'Authorization':'OAuth',
+                    'oauth_token':i.token,
+                    'oauth_consumer_key':'davidpaste.com',
+                    'oauth_verifier':i.verifier,
+                    'oauth_signature_method':'HMAC-SHA1',
+                    'oauth_signature':'24K+l1CC/rlFdWNAEp47s2v0',
+                    'oauth_timestamp':str(int(time.time())),
+                    'oauth_nonce':s.hexdigest(),
+                }
+            req = urllib2.Request('https://www.google.com/accounts/OAuthGetAccessToken')
+            try:
+                response = urllib2.urlopen(req)
+            except:
+                raise web.interalerror()
+            return response.read()
         return render.index(**d)
 
 class paste_view(object):
@@ -118,8 +159,13 @@ class paste_create(object):
                         tag = Tag(t.strip().lower())
                         web.ctx.orm.add(tag)
                     paste.tags.append(tag)
-            if paste:
-                raise web.seeother(paste.get_url())
+            try:
+                web.ctx.orm.commit()
+            except:
+                web.ctx.orm.rollback()
+                raise web.internalerror()
+            else:
+                raise web.seeother('/paste/%d/' % paste.id)
         d['f'] = f
         d['syntaxs'] = getSyntaxs()
         return render.paste_create(**d)

@@ -9,15 +9,16 @@ urls = (
         #'/admin', admin.app_admin,
 
         '^/$', 'views.paste_create',
-        '^/paste/(.*)/$', 'views.paste_view',
+        '^/paste/(\d+)/$', 'views.paste_view',
         '^/tag/(.*)/$', 'views.tag',
         '^/captcha/$', 'views.captcha',
+        '^/login/$', 'views.login',
+        '^/oauth/$', 'views.oauth',
         """
         '^/syntax/(.*)/$', 'views.syntax',
         '^/rank/$', 'views.rank',
 
         '^/register/$', 'views.register',
-        '^/login/$', 'views.login',
         '^/logout/$', 'views.logout',
 
         '^/rss.xml$', 'views.rss',
@@ -33,7 +34,7 @@ session = web.session.Session(
 app.add_processor(web.loadhook(views.my_loadhook))
 app.add_processor(views.my_handler)
 app.notfound = views.notfound
-app.internalerror = views.internalerror
+#app.internalerror = views.internalerror
 
 def getSession():
     if '_session' not in web.config:
