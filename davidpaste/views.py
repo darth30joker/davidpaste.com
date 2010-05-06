@@ -48,7 +48,7 @@ class oauth(object):
     def GET(self):
         import urllib2
         sha = hashlib.sha1()
-        s.update(str(random.random))
+        sha.update(str(random.random))
         post_data = 'scope=http://www.google.com/base/feeds/'
         headers = {
                 'Content-Type':'application/x-www-form-urlencoded',
@@ -57,7 +57,7 @@ class oauth(object):
                 'oauth_signature_method':'HMAC-SHA1',
                 'oauth_signature':'24K+l1CC/rlFdWNAEp47s2v0',
                 'oauth_timestamp':str(int(time.time())),
-                'oauth_nonce':s.hexdigest(),
+                'oauth_nonce':sha.hexdigest(),
                 'oauth_callback':'http://davidpaste.com/login/',
             }
         req = urllib2.Request('https://www.google.com/accounts/OAuthGetRequestToken', post_data, headers)
@@ -80,7 +80,7 @@ class login(object):
         if i.token and i.verifier:
             import urllib2
             sha = hashlib.sha1()
-            s.update(str(random.random))
+            sha.update(str(random.random))
             headers = {
                     'Content-Type':'application/x-www-form-urlencoded',
                     'Authorization':'OAuth',
@@ -90,7 +90,7 @@ class login(object):
                     'oauth_signature_method':'HMAC-SHA1',
                     'oauth_signature':'24K+l1CC/rlFdWNAEp47s2v0',
                     'oauth_timestamp':str(int(time.time())),
-                    'oauth_nonce':s.hexdigest(),
+                    'oauth_nonce':sha.hexdigest(),
                 }
             req = urllib2.Request('https://www.google.com/accounts/OAuthGetAccessToken')
             try:

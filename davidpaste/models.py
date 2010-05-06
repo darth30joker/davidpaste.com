@@ -87,7 +87,7 @@ class Paste(Base):
        return "<Paste ('%s')>" % self.id
 
     def get_url(self):
-        return '/paste/%d/' % self.id
+        return '/paste/%s/' % self.id
 
 class Tag(Base):
     __tablename__ = 'tags'

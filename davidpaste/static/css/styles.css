@@ -90,6 +90,7 @@ body {
 #code {
 	padding:3px;
 	border:2px solid #ccc;
+	overflow-x:auto;
 }
 /** paste_create page **/
 #wrapper form p {

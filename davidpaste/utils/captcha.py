@@ -11,7 +11,7 @@ def getCaptcha():
         for y in range(0, 60):
             draw.point((x, y), (255, 255, 255))
     font = ImageFont.truetype('FreeMono.ttf', 18)
-    alphabet = '0123456789'
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
     word = ''
     for i in range(4):
         word = word + alphabet[random.randint(0, len(alphabet) -1)]

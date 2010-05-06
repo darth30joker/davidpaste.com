@@ -5,20 +5,26 @@
 .syntaxtable td {
 	background-color:#272822;
 }
-.linenos {padding:0 5px;}
+.linenos {
+	padding:0 0 0 5px;
+	border-right:2px solid #66D9EF;
+}
+.linenodiv,
+.syntax {
+	font-size:14px;
+	padding:10px;
+	line-height:16px;
+}
 .linenodiv pre {
-	line-height:20px;
+	font-family:'Consolas';
 	color:white;
 }
 .syntax .hll { background-color: #49483e }
 .syntax  {
 	color: #f8f8f2;
-	line-height:16px;
-	overflow-x:auto;
-	font-size:14px;
-	font-family:"Consolas, Courier New,BitStream Vera Sans Mono,Lucida Console";
+	font-family:'Consolas';
 }
-.syntax pre { padding:10px;line-height:20px; }
+.syntax span { font-family:'Consolas'; }
 .syntax .c { color: #75715e } /* Comment */
 .syntax .err { color: #960050; background-color: #1e0010 } /* Error */
 .syntax .k { color: #66d9ef } /* Keyword */
