@@ -87,6 +87,19 @@ body {
 #wrapper p a:visited {
 	color:#FF6C76;
 }
+#wrapper .tag {
+	background-color:#F7DEB0;
+	padding:0 3px;
+	margin-right:5px;
+	border:1px solid #E69602;
+}
+#wrapper .tag a {
+	text-decoration:none;
+}
+#wrapper .tag a:link,
+#wrapper .tag a:visited {
+	color:red;
+}
 #code {
 	padding:3px;
 	border:2px solid #ccc;
@@ -123,6 +136,7 @@ body {
 #wrapper form p textarea {
 	border:1px solid #CCC;
 }
+
 
 /** advertise page **/
 #advertise {
