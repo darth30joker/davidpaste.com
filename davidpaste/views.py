@@ -183,6 +183,7 @@ class tag(object):
         d['tag'] = tag
         d['p'] = p
         d['pastes'] = pastes
+        d['usedTime'] = time.time() - d['startTime']
         return render.tag(**d)
 
 class rss(object):
@@ -213,8 +214,8 @@ class rss(object):
 
 def notfound():
     #return web.notfound("对不起, 您所访问的地址并不存在.")
-    return web.notfound(render.notfound())
+    return web.notfound(render.notfound(**d))
 
 def internalerror():
     #return web.internalerror("对不起, 网站遇到一个不可遇见的错误.")
-    return web.internalerror(render.servererror())
+    return web.internalerror(render.servererror(**d))
