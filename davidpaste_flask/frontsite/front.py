@@ -16,6 +16,7 @@ front = Module(__name__)
 def index():
 	return render("index.html")
 	
+
 @front.route("/paste/list/")
 def paste_list():
 	return "lists"
@@ -24,10 +25,12 @@ def paste_list():
 def paste_create():
 	return "create"
 	
-@front.route("/paste/view/<id:\d+>/")
-def paste_view():
-	return "view"
-	
+@front.route("/paste/view/<int:id>/")
+def paste_view(id):
+	return "view %d" % id
+
+"""
+
 @front.route("/paste/edit/<id:\d+>/")
 def paste_edit():
 	return "edit"
@@ -39,4 +42,4 @@ def paste_delete():
 @front.route("/paste/comment/<id:\d+>/")
 def paste_comment():
 	return "comment"
-	
+"""
