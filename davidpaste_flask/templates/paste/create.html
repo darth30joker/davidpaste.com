@@ -1,4 +1,8 @@
 {% extends 'base.html' %}
-{% block title %}Paste Your Code{% endblock %}
+{% block title %}发表新代码{% endblock %}
 {% block content %}
+	<form action="/" method="POST">
+		<p><label>{{ form.title.label }}</label>{{ form.title }}</p>
+		<p><label>&nbsp;</label><input type="submit" value="发表" /></p>
+	</form>
 {% endblock %}

@@ -4,10 +4,32 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>{% block title %}{% endblock %} - David-Paste</title>
 	<meta name="author" content="davidx <mykingheaven@gmail.com>">
+	<title>{% block title %}{% endblock %} - DavidPaste</title>
+	<link rel="stylesheet" href="/static/css/styles.css" />
 </head>
 <body>
-{% block content %}{% endblock %}
-</body>
+    <body>
+        <div id="page">
+            <div id="head">
+                <div id="logo">
+					<h1><a href="/"><img src="/static/images/logo.png" /></a><span> 0.3β</span></h1>
+                </div>
+                <div id="menu">
+                    <!--<ul>
+                        <li><a href="/">发表新代码</a></li>
+                        <li style="font-size:16px;"><a href="/rss.xml">订阅大卫粘贴</a></li>
+					</ul>-->
+                </div>
+				<div style="clear:both;"></div>
+            </div>
+			<div id="main">
+				<div id="wrapper">{% block content %}{% endblock %}</div>
+				<div id="advertise">{% include '_advertise.html' %}</div>
+				<div style="clear:both;"></div>
+			</div>
+            <div id="foot">
+                <p>版权所有©2009-2010 <a href="http://davidx.me/">David Xie</a> | 如有转贴, 请注明出处. @转自<a href="http://davidpaste.com/">&lt;大卫粘贴:http://davidpaste.com/&gt;</a> | Powered by <a href="http://flask.pocoo.org/" target="_blank">Flask</a></p>
+            </div>
+        </body>
 </html>

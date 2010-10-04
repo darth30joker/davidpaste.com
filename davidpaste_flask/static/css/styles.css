@@ -1,0 +1,166 @@
+/** CSS Reset **/
+* { padding:0; margin:0; }
+a { text-decoration:none; }
+img { border:none; }
+.clearfloat { clear:both; }
+
+/** body **/
+body {
+	background-color:#DEDEDE;
+	font-family:"DejaVu Sans MONO", "Consolas", "BitStream Vera Sans Mono";
+}
+#page {
+	width:960px;
+	margin:0 auto;
+}
+#head {
+	background-color:#002344;
+}
+#logo {
+	float:left;
+}
+#logo h1 {
+	color:#fff;
+	margin-left:10px;
+}
+#logo h1 a:link,
+#logo h1 a:visited {
+	color:#fff;
+}
+#logo h1 span {
+	font-size:14px;
+}
+#menu {
+	width:200px;
+	margin:0 auto;
+	padding-top:15px;
+}
+#menu ul {
+	list-style:none;
+}
+#menu ul li {
+	display:inline;
+}
+#menu ul li a:link,
+#menu ul li a:visited {
+	color:#fff;
+}
+#main {
+	background-color:#fff;
+}
+#foot {
+	background-color:#002344;
+    font-size:14px;
+	color:#fff;
+	line-height:20px;
+	text-align:center;
+	padding:10px 0;
+	-moz-border-radius-bottomleft:7px;
+	-moz-border-radius-bottomright:7px;
+}
+#foot a:link,
+#foot a:visited {
+	text-decoration:underline;
+	color:#A76B2E;
+}
+
+/** paste_view page **/
+#wrapper {
+	width:680px;
+	padding:40px;
+	float:left;
+}
+#wrapper p {
+	margin:5px 0;
+	font-size:14px;
+}
+#wrapper p label {
+	margin:20px;
+}
+#wrapper p span {
+	width:200px;
+}
+#wrapper p a {
+	text-decoration:underline;
+}
+#wrapper p a:link,
+#wrapper p a:visited {
+	color:#FF6C76;
+}
+#wrapper .tag {
+	background-color:#F7DEB0;
+	padding:0 3px;
+	margin-right:5px;
+	border:1px solid #E69602;
+}
+#wrapper .tag a {
+	text-decoration:none;
+}
+#wrapper .tag a:link,
+#wrapper .tag a:visited {
+	color:red;
+}
+#code {
+	padding:3px;
+	border:2px solid #ccc;
+	overflow-x:auto;
+}
+/** paste_create page **/
+#wrapper form p {
+	clear:both;
+	height:24px;
+	line-height:24px;
+}
+#wrapper form p label {
+	float:left;
+	width:60px;
+	margin:0;
+	padding-left:20px;
+	letter-spacing:4px;
+	font-size:14px;
+}
+#wrapper form p input,
+#wrapper form p select {
+	width:200px;
+	float:left;
+	height:22px;
+}
+#wrapper form p textarea {
+	float:left;
+	width:700px;
+	height:400px;
+	margin-bottom:10px;
+}
+#wrapper form p input,
+#wrapper form p select,
+#wrapper form p textarea {
+	border:1px solid #CCC;
+}
+
+
+/** advertise page **/
+#advertise {
+	width:160px;
+	padding:20px;
+	float:left;
+}
+
+/** tag page **/
+#paste_list {
+	padding-left:20px;
+	font-size:14px;
+	min-height:550px;
+}
+#paste_list li a:link,
+#paste_list li a:visited {
+	color:black;
+}
+#paste_list li a:hover {
+	color:red;
+}
+
+/** pager **/
+#pager td {
+	width:200px;
+	text-align:center;
+}
