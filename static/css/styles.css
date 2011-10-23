@@ -1,0 +1,102 @@
+/** **/
+a {
+    text-decoration:none;
+}
+
+body {
+    background:#E3E3E3;
+}
+
+/** form **/
+.form p {
+    clear:both;
+    line-height:25px;
+}
+
+.form p label,
+.form p input,
+.form p select {
+    float:left;
+}
+
+.form p label {
+    width:70px;
+    margin-right:10px;
+    margin-bottom:5px;
+    text-align:right;
+}
+
+.form p input {
+    width:200px;
+    height:18px;
+}
+
+.form p select {
+    width:207px;
+    height:18px;
+    margin-top:4px;
+}
+
+.form p textarea {
+    width:500px;
+    height:200px;
+}
+
+/** top **/
+div#top {
+    height:73px;
+    background:url('/static/images/header_bg.png') repeat-x;
+    border-left:2px solid #AAAAAA;
+    border-right:2px solid #AAAAAA;
+    -moz-border-radius-bottomleft:5px;
+    -moz-border-radius-bottomright:5px;
+    -webkit-border-radius-bottomleft:5px;
+    -webkit-border-radius-bottomright:5px;
+}
+
+div#top h1 {
+    width:18px;
+    margin-top:20px;
+    margin-left:30px;
+}
+
+div#top ul {
+    float:right;
+}
+
+div#top ul li {
+    display:inline;
+}
+
+/** foot **/
+#footer {
+}
+
+/** content **/
+#container {
+    border: 2px solid #AAAAAA;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    min-height:300px;
+    background:white;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+/** new paste page **/
+#paste_new {
+
+}
+#paste_new h2 {
+    border-bottom:1px dashed #ccc;
+    margin-bottom:10px;
+}
+#paste_new form p textarea {
+    margin-left:20px;
+    width:670px;
+    max-width:670px;
+    margin-bottom:10px;
+}
+#paste_new form p a {
+    margin:20px;
+}

@@ -8,17 +8,23 @@ Copyright (c) 2010 IceFox's Studio. All rights reserved.
 """
 from flask import Flask, request, render_template, session, Response, send_file
 from views.pasteapp import pasteapp
-from database import db_session
-from forms import PasteForm
+from views.tagapp import tagapp
+from views.database import db_session
+from views.forms import PasteForm
 #from utils import getCaptcha
+from views.filters import *
+from views.functions import *
 
-RECAPTCHA_PUBLIC_KEY = '6LfJ4L4SAAAAAP9nayBSvOiUcokpz8w5YV0f5oBZ'
-RECAPTCHA_PRIVATE_KEY = '6LfJ4L4SAAAAANelSs7KKb3y-VOPsEyUaM3-8Pwx'
+RECAPTCHA_PUBLIC_KEY = '6LeaILoSAAAAAOB1s0b5uGqDZ6Xbn1IkAR4wQpqJ'
+RECAPTCHA_PRIVATE_KEY = '6LeaILoSAAAAAAKm48RO9VK5_Knup3Z3glfJ9Of8'
 
 app = Flask(__name__)
 app.config.from_object(__name__)
-app.register_module(pasteapp, url_prefix="/pasteapp")
+app.register_module(pasteapp, url_prefix="/paste")
+app.register_module(tagapp, url_prefix="/tag")
 app.secret_key = 'sdaghasdhsdh2346234uyqahg'
+app.jinja_env.filters['dateformat'] = dateformat
+app.jinja_env.filters['avatar'] = avatar
 
 d = {}
 
@@ -26,6 +32,7 @@ d = {}
 def index():
     form = PasteForm(request.form)
     d['form'] = form
+    d['syntax_list'] = getSyntaxList()
     return render_template('pasteapp/create.html', **d)
 
 @app.route('/captcha/')
@@ -42,11 +49,14 @@ def login():
 def logout():
     pass
 
-"""
+@app.route('/register/', methods=['GET', 'POST'])
+def register():
+    pass
+
 @app.before_request
 def before_request():
     d['session'] = session
-"""
+    d['tags'] = getTags()
 
 @app.after_request
 def after_request(response):

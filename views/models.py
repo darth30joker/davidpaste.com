@@ -8,7 +8,7 @@ from database import engine
 from datetime import datetime
 import hashlib
 
-__all__ = ['User', 'Syntax', 'Paste']
+__all__ = ['User', 'Syntax', 'Paste', 'Tag']
 
 Base = declarative_base()
 metadata = Base.metadata

@@ -31,29 +31,20 @@ def getTagObject(tag_name):
 def create():
     form = PasteForm(request.form)
     if request.method == 'POST' and form.validate_on_submit():
-        if form.title.data:
-            title = form.title.data
-        else:
-            title = 'Untitled'
         if 'user' in session:
             user_id = session['user']['id']
         else:
             user_id = 1
-        model = Paste(user_id, form.syntax.data, title, form.content.data)
+        model = Paste(user_id, form.syntax.data, form.content.data)
+        if form.title.data:
+            model.title = form.title.data
         db_session.add(model)
         try:
             db_session.commit()
         except Exception, e:
             pass
         else:
-            if form.tag.data:
-                tags = form.tag.data.split(',')
-                for t in tags:
-                    tag = getTagObject(t)
-                    if tag:
-                        model.tags.append(tag)
-            return redirect(url_for('view',
-                paste_id=str(hex(model.id))[2:].replace('L', '')))
+            return redirect(url_for('view', paste_id=model.id))
     d['form'] = form
     return render_template('pasteapp/create.html', **d)
 
