@@ -1,14 +1,15 @@
 #!/usr/bin/python
 #-*-coding:utf-8-*-
+
 from flask import Module, request, session, url_for, redirect, render_template
 from pygments import highlight
 from pygments.lexers import get_lexer_by_name
 from pygments.formatters import HtmlFormatter
-from forms import *
 from database import db_session
+from forms import *
 from models import *
 
-paste = Module(__name__)
+pasteapp = Module(__name__)
 d = {}
 
 def getTagObject(tag_name):
@@ -26,7 +27,7 @@ def getTagObject(tag_name):
         tag.times = tag.times + 1
     return tag
 
-@paste.route('/create/', methods=['GET', 'POST'])
+@pasteapp.route('/create/', methods=['GET', 'POST'])
 def create():
     form = PasteForm(request.form)
     if request.method == 'POST' and form.validate_on_submit():
@@ -54,9 +55,9 @@ def create():
             return redirect(url_for('view',
                 paste_id=str(hex(model.id))[2:].replace('L', '')))
     d['form'] = form
-    return render_template('paste/create.html', **d)
+    return render_template('pasteapp/create.html', **d)
 
-@paste.route('/view/<paste_id>/')
+@pasteapp.route('/view/<paste_id>/')
 def view(paste_id):
     paste_id = int(paste_id, 16)
     try:
@@ -68,6 +69,6 @@ def view(paste_id):
         formatter = HtmlFormatter(linenos='table', cssclass="source")
         d['code'] = highlight(model.content, lexer, formatter)
         d['model'] = model
-        return render_template('paste/view.html', **d)
+        return render_template('pasteapp/view.html', **d)
     else:
         return "Error"

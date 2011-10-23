@@ -7,17 +7,17 @@ Created by davidx on 2010-06-20.
 Copyright (c) 2010 IceFox's Studio. All rights reserved.
 """
 from flask import Flask, request, render_template, session, Response, send_file
-from paste import paste
+from views.pasteapp import pasteapp
 from database import db_session
 from forms import PasteForm
-from utils import getCaptcha
+#from utils import getCaptcha
 
 RECAPTCHA_PUBLIC_KEY = '6LfJ4L4SAAAAAP9nayBSvOiUcokpz8w5YV0f5oBZ'
 RECAPTCHA_PRIVATE_KEY = '6LfJ4L4SAAAAANelSs7KKb3y-VOPsEyUaM3-8Pwx'
 
 app = Flask(__name__)
 app.config.from_object(__name__)
-app.register_module(paste, url_prefix="/paste")
+app.register_module(pasteapp, url_prefix="/pasteapp")
 app.secret_key = 'sdaghasdhsdh2346234uyqahg'
 
 d = {}
@@ -26,7 +26,7 @@ d = {}
 def index():
     form = PasteForm(request.form)
     d['form'] = form
-    return render_template('paste/create.html', **d)
+    return render_template('pasteapp/create.html', **d)
 
 @app.route('/captcha/')
 def captcha():

@@ -6,6 +6,7 @@ from sqlalchemy.orm import relationship, backref
 from sqlalchemy.ext.declarative import declarative_base
 from database import engine
 from datetime import datetime
+import hashlib
 
 __all__ = ['User', 'Syntax', 'Paste']
 
@@ -16,8 +17,8 @@ class User(Base):
     __tablename__ = 'users'
 
     id = Column(Integer, primary_key=True)
-    nickname = Column(String(45))
-    email = Column(String(45), unique=True)
+    email = Column(String(45), unique=True) # 登陆使用的
+    nickname = Column(String(45)) # 显示时用的
     password = Column(String(45))
     created_time = Column(DateTime, default=datetime.now())
     modified_time = Column(DateTime, default=datetime.now())
@@ -25,7 +26,7 @@ class User(Base):
     def __init__(self, nickname, email, password):
         self.nickname = nickname
         self.email = email
-        self.password = password
+        self.password = hashlib.md5(password).hexdigest()
 
     def __repr__(self):
         return "<User (%s@%s)>" % (self.nickname, self.email)
@@ -34,8 +35,8 @@ class Syntax(Base):
     __tablename__ = 'syntax'
 
     id = Column(Integer, primary_key=True)
-    name = Column(String(45))
-    syntax = Column(String(45))
+    name = Column(String(45)) # 显示的名字
+    syntax = Column(String(45)) # pygments用的
 
     def __init__(self, name, syntax):
         self.name = name
@@ -66,9 +67,9 @@ class Paste(Base):
     __tablename__ = 'pastes'
 
     id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('users.id'), nullable=True)
+    user_id = Column(Integer, ForeignKey('users.id'))
     syntax_id = Column(Integer, ForeignKey('syntax.id'))
-    title = Column(String(45), nullable=True)
+    title = Column(String(45), default=u'未知标题')
     content = Column(Text)
     created_time = Column(DateTime, default=datetime.now())
     modified_time = Column(DateTime, default=datetime.now())
