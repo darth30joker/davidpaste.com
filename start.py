@@ -8,6 +8,7 @@ Copyright (c) 2010 IceFox's Studio. All rights reserved.
 """
 from flask import Flask, request, render_template, session, Response, send_file
 from views.pasteapp import pasteapp
+from views.userapp import userapp
 from views.tagapp import tagapp
 from views.database import db_session
 from views.forms import PasteForm
@@ -21,6 +22,7 @@ RECAPTCHA_PRIVATE_KEY = '6LeaILoSAAAAAAKm48RO9VK5_Knup3Z3glfJ9Of8'
 app = Flask(__name__)
 app.config.from_object(__name__)
 app.register_module(pasteapp, url_prefix="/paste")
+app.register_module(userapp, url_prefix="/user")
 app.register_module(tagapp, url_prefix="/tag")
 app.secret_key = 'sdaghasdhsdh2346234uyqahg'
 app.jinja_env.filters['dateformat'] = dateformat
@@ -40,18 +42,6 @@ def captcha():
     captcha = getCaptcha()
     session['captcha'] = captcha[0]
     return send_file(captcha[1], mimetype='image/gif')
-
-@app.route('/login/', methods=['GET', 'POST'])
-def login():
-    pass
-
-@app.route('/logout/', methods=['GET'])
-def logout():
-    pass
-
-@app.route('/register/', methods=['GET', 'POST'])
-def register():
-    pass
 
 @app.before_request
 def before_request():

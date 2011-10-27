@@ -19,10 +19,10 @@
                 {% if session['user'] %}
                 <li><a href="{{ url_for('userapp.view', id=session['user']['id']) }}"><!--<img src="http://www.gravatar.com/avatar/{{ session['user']['email'] | avatar }}?s=14" /> -->{{ session['user']['nickname'] }}</a></li>
                     <li><a href="/user/manage/">管理</a></li>
-                    <li><a href="{{ url_for('logout') }}">登出</a></li>
+                    <li><a href="{{ url_for('userapp.logout') }}">登出</a></li>
                 {% else %}
-                    <li><a href="{{ url_for('app.register') }}">注册</a></li>
-                    <li><a href="{{ url_for('app.login') }}">登入</a></li>
+                    <li><a href="{{ url_for('userapp.register') }}">注册</a></li>
+                    <li><a href="{{ url_for('userapp.login') }}">登入</a></li>
                 {% endif %}
             </ul>
         </div>

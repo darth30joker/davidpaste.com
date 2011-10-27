@@ -2,8 +2,19 @@
 
 from models import *
 from database import db_session
+import Image,ImageDraw,ImageFont,os,string,random,ImageFilter,cStringIO
 
-__all__ = ['getTags', 'getSyntaxList', 'updateTags']
+__all__ = ['getTags', 'getSyntaxList', 'updateTags', 'getCaptcha']
+
+def getCaptcha():
+    string = 'test'
+    im = Image.new('RGB', (100, 20), (255,255,255))
+    draw = ImageDraw.Draw(im)
+    draw.text((0,0), string, font=ImageFont.truetype('arial.ttf', 18), fill=(0,0,255))
+    f = cStringIO.StringIO()
+    im.save(f, 'GIF')
+    f.seek(0)
+    return [string, f]
 
 def getTags():
     tags = db_session.query(Tag).all()[:10]
