@@ -8,6 +8,7 @@ from pygments.formatters import HtmlFormatter
 from database import db_session
 from forms import *
 from models import *
+from functions import *
 
 pasteapp = Module(__name__)
 d = {}
@@ -41,6 +42,7 @@ def create():
         db_session.add(model)
         try:
             db_session.commit()
+            updateTags(db_session, model, form.tag.data.strip().split())
         except Exception, e:
             pass
         else:

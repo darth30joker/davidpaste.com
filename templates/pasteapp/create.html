@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
 {% block title %}粘贴新代码{% endblock %}
 {% block content %}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.sumit').click(function() {
+            $('.form').submit();
+        });
+    });
+</script>
 <div id="paste_new">
 	<h2>粘贴新代码</h2>
 	<form class="form" action="{{ url_for('pasteapp.create') }}" method="POST">
@@ -9,7 +16,7 @@
 		<p><label>{{ form.tag.label }}</label>{{ form.tag }}</p>
 		<p>{{ form.content }}</p>
 		<p><label></label>{{ form.recaptcha }}</p>
-		<p><a class="submit button" href="javascript:void();">发表</a></p>
+		<p><input type="submit" class="submit button" value="发表" /></p>
 	</form>
 </div>
 {% endblock %}
