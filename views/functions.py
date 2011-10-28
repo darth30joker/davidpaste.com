@@ -7,10 +7,18 @@ import Image,ImageDraw,ImageFont,os,string,random,ImageFilter,cStringIO
 __all__ = ['getTags', 'getSyntaxList', 'updateTags', 'getCaptcha']
 
 def getCaptcha():
-    string = 'test'
-    im = Image.new('RGB', (100, 20), (255,255,255))
+    charactors = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    string = ''
+    size = (100, 30)
+    for i in range(5):
+        string += charactors[random.randint(0,61)]
+    im = Image.new('RGB', size, (255,255,255))
     draw = ImageDraw.Draw(im)
-    draw.text((0,0), string, font=ImageFont.truetype('arial.ttf', 18), fill=(0,0,255))
+    draw.text((25,5), string, font=ImageFont.truetype('Monaco.ttf', 18), fill=(0,0,255))
+    for x in range(size[0]):
+        for y in range(size[1]):
+            if random.randint(0, 50) > 48:
+                draw.point((x,y), fill = (0,0,0))
     f = cStringIO.StringIO()
     im.save(f, 'GIF')
     f.seek(0)

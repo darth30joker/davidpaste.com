@@ -100,3 +100,13 @@ div#top ul li {
 #paste_new form p a {
     margin:20px;
 }
+
+/** paste view **/
+#paste_view {
+    margin:20px 0 20px 20px;
+    overflow:auto;
+    width:680px;
+}
+#paste_view .linenodiv {
+    margin-right:10px;
+}

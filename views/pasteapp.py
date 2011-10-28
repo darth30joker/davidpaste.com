@@ -30,8 +30,8 @@ def getTagObject(tag_name):
 
 @pasteapp.route('/create/', methods=['GET', 'POST'])
 def create():
-    form = PasteForm(request.form)
-    if request.method == 'POST' and form.validate_on_submit():
+    form = PasteForm(request.form, csrf_enabled=False)
+    if request.method == 'POST' and form.validate_on_submit() and form.captcha.data.lower() == session['captcha'].lower():
         if 'user' in session:
             user_id = session['user']['id']
         else:

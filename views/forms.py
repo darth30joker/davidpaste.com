@@ -46,5 +46,5 @@ class PasteForm(Form):
     syntax = SelectField(u'语法', choices=getSyntaxList(), coerce=int)
     content = TextAreaField(u'代码', [Required()])
     tag = TextField(u'标签')
-    recaptcha = RecaptchaField()
+    captcha = TextField(u'验证码', [Required()])
 

@@ -32,7 +32,7 @@ d = {}
 
 @app.route('/')
 def index():
-    form = PasteForm(request.form)
+    form = PasteForm(request.form, csrf_enabled=False)
     d['form'] = form
     d['syntax_list'] = getSyntaxList()
     return render_template('pasteapp/create.html', **d)
