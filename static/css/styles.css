@@ -32,9 +32,8 @@ body {
 }
 
 .form p select {
-    width:207px;
-    height:18px;
-    margin-top:4px;
+    width:209px;
+    height:28px;
 }
 
 .form p textarea {
@@ -81,6 +80,7 @@ div#top ul li {
     background:white;
     margin-top:20px;
     margin-bottom:20px;
+	background: none repeat scroll 0 0 #DFDFDF;
 }
 
 /** new paste page **/
