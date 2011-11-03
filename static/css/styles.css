@@ -20,14 +20,14 @@ body {
 }
 
 .form p label {
-    width:70px;
+    width:100px;
     margin-right:10px;
     margin-bottom:5px;
     text-align:right;
 }
 
 .form p input {
-    width:200px;
+    width:400px;
     height:18px;
 }
 
@@ -41,6 +41,9 @@ body {
     height:200px;
 }
 
+#captcha {
+    width:100px;
+}
 /** top **/
 div#top {
     height:73px;

@@ -9,12 +9,13 @@ __all__ = ['getTags', 'getSyntaxList', 'updateTags', 'getCaptcha']
 def getCaptcha():
     charactors = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     string = ''
-    size = (100, 30)
+    size = (90, 22)
     for i in range(5):
         string += charactors[random.randint(0,61)]
     im = Image.new('RGB', size, (255,255,255))
     draw = ImageDraw.Draw(im)
-    draw.text((25,5), string, font=ImageFont.truetype('Monaco.ttf', 18), fill=(0,0,255))
+    for i, s in enumerate(string):
+        draw.text((10 + i * 15, random.randint(0, 4)), s, font=ImageFont.truetype('Monaco.ttf', 16), fill=(0,0,255))
     for x in range(size[0]):
         for y in range(size[1]):
             if random.randint(0, 50) > 48:

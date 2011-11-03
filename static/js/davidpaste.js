@@ -1,3 +1,3 @@
 $(document).ready(function(){
-	$('form').uniform();
+	$("select, input:checkbox, input:radio, input:file").uniform();
 });

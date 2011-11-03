@@ -10,16 +10,16 @@
 </script>
 <div id="paste_new">
 	<h2>粘贴新代码</h2>
+	{% if form.errors %}
     {{ form.errors }}
+	{% endif %}
 	<form class="form" action="{{ url_for('pasteapp.create') }}" method="POST">
 		<p><label>{{ form.title.label }}</label>{{ form.title }}</p>
 		<p><label>{{ form.syntax.label }}</label>{{ form.syntax }}</p>
 		<p><label>{{ form.tag.label }}</label>{{ form.tag }}</p>
 		<p>{{ form.content }}</p>
-        <p><label></label><img src="/captcha/" /></p>
-		<p></p>
-        <p><label>{{ form.captcha.label }}</label>{{ form.captcha }}</p>
-		<p><input type="submit" class="submit button" value="发表" /></p>
+        <p><label>{{ form.captcha.label }}</label>{{ form.captcha }}<img src="/captcha/" /></p>
+        <p><label></label><input type="submit" class="submit button" value="发表" /></p>
 	</form>
 </div>
 {% endblock %}
