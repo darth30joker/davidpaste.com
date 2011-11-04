@@ -9,6 +9,7 @@ from database import db_session
 from forms import *
 from models import *
 from functions import *
+import time
 
 pasteapp = Module(__name__)
 d = {}
@@ -36,7 +37,7 @@ def create():
             user_id = session['user']['id']
         else:
             user_id = 1
-        model = Paste(user_id, form.syntax.data, form.content.data)
+        model = Paste(form.syntax.data, form.title.data, form.content.data)
         if form.title.data:
             model.title = form.title.data
         db_session.add(model)
@@ -48,6 +49,7 @@ def create():
         else:
             return redirect(url_for('view', paste_id=model.id))
     d['form'] = form
+    d['t'] = str(int(time.time()))
     return render_template('pasteapp/create.html', **d)
 
 @pasteapp.route('/view/<paste_id>/')

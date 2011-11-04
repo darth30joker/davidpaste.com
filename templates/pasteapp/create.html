@@ -18,7 +18,7 @@
 		<p><label>{{ form.syntax.label }}</label>{{ form.syntax }}</p>
 		<p><label>{{ form.tag.label }}</label>{{ form.tag }}</p>
 		<p>{{ form.content }}</p>
-        <p><label>{{ form.captcha.label }}</label>{{ form.captcha }}<img src="/captcha/" /></p>
+        <p><label>{{ form.captcha.label }}</label>{{ form.captcha }}<img src="/captcha/?t={{ t }}" /></p>
         <p><label></label><input type="submit" class="submit button" value="发表" /></p>
 	</form>
 </div>
