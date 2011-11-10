@@ -40,6 +40,8 @@ def create():
         model = Paste(form.syntax.data, form.title.data, form.content.data)
         if form.title.data:
             model.title = form.title.data
+        else:
+            model.title = u'未知标题'
         db_session.add(model)
         try:
             db_session.commit()

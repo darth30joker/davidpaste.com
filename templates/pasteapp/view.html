@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
-{% block title %}查看{% endblock %}
+{% block title %}{{ model.title }}{% endblock %}
 {% block content %}
+<h1>{{ model.title }}</h1>
 <div id="paste_view">
     {{ code | safe }}
 </div>

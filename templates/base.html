@@ -17,7 +17,7 @@
     <body>
         <div id="top" class="container_12">
 			<h1 class="grid_2 alpha" id="website_logo"><a href="/">DAVIDPASTE</a></h1>
-            <ul class="grid_4 omega" id="website_menu">
+			<!--<ul class="grid_4 omega" id="website_menu">
                 <li><a href="{{ url_for('tagapp.list') }}">标签</a></li>
                 {% if session['user'] %}
                 <li><a href="{{ url_for('userapp.view', id=session['user']['id']) }}"><!--<img src="http://www.gravatar.com/avatar/{{ session['user']['email'] | avatar }}?s=14" /> -->{{ session['user']['nickname'] }}</a></li>
@@ -27,14 +27,14 @@
                     <li><a href="{{ url_for('userapp.register') }}">注册</a></li>
                     <li><a href="{{ url_for('userapp.login') }}">登入</a></li>
                 {% endif %}
-            </ul>
+			</ul>-->
         </div>
         <div id="container" class="container_12">
             <div id="wrapper" class="grid_9">{% block content %}{% endblock %}</div>
             <div id="sidebar" class="grid_3">{% block sidebar %}{% include 'ads.html' %}{% endblock %}</div>
         </div>
 		<div id="footer" class="container_12">
-			<p class="flink"><a href="/about/">关于</a>｜<a href="/contact/">联系我们</a>copyright davidpaste.com 2011</p>
+			<p class="flink"><a href="/about/">关于</a> <a href="mailto:mykingheaven@gmail.com">联系我</a><span>copyright <a href="/">davidpaste.com</a> 2011</span></p>
 		</div>
     </body>
 </html>

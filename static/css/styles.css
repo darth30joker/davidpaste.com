@@ -38,7 +38,7 @@ body {
 
 .form p textarea {
     width:500px;
-    height:200px;
+    height:450px;
 }
 
 #captcha {
@@ -62,6 +62,11 @@ div#top h1 {
     margin-left:30px;
 }
 
+div#top h1 a:link,
+div#top h1 a:visited {
+	color:white;
+}
+
 div#top ul {
     float:right;
 }
@@ -72,6 +77,24 @@ div#top ul li {
 
 /** foot **/
 #footer {
+	margin-bottom:50px;
+}
+
+#footer a {
+	margin-right:10px;
+}
+
+#footer a:link,
+#footer a:visited {
+	color:black;
+}
+
+#footer a:hover {
+	color:red;
+}
+
+#footer p span {
+	float:right;
 }
 
 /** content **/
