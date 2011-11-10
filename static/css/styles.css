@@ -97,6 +97,12 @@ div#top ul li {
 	float:right;
 }
 
+/** side bar **/
+#sidebar {
+	margin-left: 40px;
+    padding-top: 30px;
+}
+
 /** content **/
 #container {
     border: 2px solid #AAAAAA;
