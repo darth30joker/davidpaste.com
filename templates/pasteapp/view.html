@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% block title %}{{ model.title }}{% endblock %}
 {% block content %}
-<h1>{{ model.title }}</h1>
 <div id="paste_view">
-    {{ code | safe }}
+    <h1>{{ model.title }}</h1>
+    <h3>{% for tag in model.tags %}<a href="/tag/{{ tag.name }}">{{ tag.name }}</a>{% endfor %}</h3>
+    <div id="code_view">{{ code | safe }}</div>
 </div>
 {% endblock %}

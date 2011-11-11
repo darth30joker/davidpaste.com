@@ -67,6 +67,11 @@ div#top h1 a:visited {
 	color:white;
 }
 
+div#top span {
+	float: left;
+    margin-left: 135px;
+    margin-top: 33px;
+}
 div#top ul {
     float:right;
 }
@@ -136,9 +141,32 @@ div#top ul li {
 /** paste view **/
 #paste_view {
     margin:20px 0 20px 20px;
-    overflow:auto;
+}
+#paste_view h1,
+#paste_view h3 {
+	margin-left:30px;
+	margin-bottom:20px;
+}
+#paste_view h1 {
+	font-size:18px;
+}
+#paste_view h3 {
+	font-size:14px;
+}
+#paste_view h3 a {
+	margin-right:10px;
+}
+#paste_view h3 a:link,
+#paste_view h3 a:visited {
+	color:red;
+}
+#code_view {
     width:680px;
 }
-#paste_view .linenodiv {
+#code_view .linenodiv {
     margin-right:10px;
+}
+#code_view .source {
+    overflow:auto;
+    width:650px;
 }
