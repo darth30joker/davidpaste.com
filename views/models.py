@@ -88,4 +88,25 @@ class Paste(Base):
         return "<Paste (%s@%s)>" % (self.title, self.user_id)
 
 if __name__ == '__main__':
+    from database import db_session
     metadata.create_all(engine)
+
+    syntax_dict = {'python':'Python',
+                   'c':'C',
+                   'html':'HTML',
+                   'html':'XHTML',
+                   'javascript':('JavaScript', 'JScript'),
+                   'css':'CSS',
+                   'c#':'C#',
+                   }
+
+    for key in syntax_dict:
+        value = syntax_dict[key]
+        if isinstance(value, tuple):
+            for name in value:
+                syntax = Syntax(name, key)
+                db_session.add(syntax)
+        if isinstance(value, str):
+            syntax = Syntax(value, key)
+            db_session.add(syntax)
+    db_session.commit()
