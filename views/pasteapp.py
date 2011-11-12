@@ -56,16 +56,15 @@ def create():
 
 @pasteapp.route('/view/<paste_id>')
 def view(paste_id):
-    paste_id = int(paste_id, 16)
-    try:
-        model = db_session.query(Paste).filter(Paste.id==paste_id).one()
-    except:
-        model = None
-    if model:
-        lexer = get_lexer_by_name(model.syntax.syntax, stripall=True)
-        formatter = HtmlFormatter(linenos='table', cssclass="source")
-        d['code'] = highlight(model.content, lexer, formatter)
-        d['model'] = model
-        return render_template('pasteapp/view.html', **d)
-    else:
-        return "Error"
+    if isinstance(paste_id, int):
+        try:
+            model = db_session.query(Paste).filter(Paste.id==paste_id).one()
+        except:
+            model = None
+        if model:
+            lexer = get_lexer_by_name(model.syntax.syntax, stripall=True)
+            formatter = HtmlFormatter(linenos='table', cssclass="source")
+            d['code'] = highlight(model.content, lexer, formatter)
+            d['model'] = model
+            return render_template('pasteapp/view.html', **d)
+    abort(404)

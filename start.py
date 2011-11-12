@@ -43,6 +43,10 @@ def captcha():
     session['captcha'] = captcha[0]
     return send_file(captcha[1], mimetype='image/gif')
 
+@app.route('/page/about')
+def about():
+    return render_template('about.html')
+
 @app.before_request
 def before_request():
     d['session'] = session
@@ -56,6 +60,19 @@ def after_request(response):
         db_session.rollback()
     return response
 
+@app.errorhandler(404)
+def page_not_found(error):
+    d['title'] = u'页面不存在'
+    d['message'] = u'您所访问的页面不存在, 是不是打错地址了啊?'
+    return render_template('error.html', **d), 404
+
+@app.errorhandler(500)
+def page_error(error):
+    d['title'] = u'页面出错啦'
+    d['message'] = u'您所访问的页面出错啦! 待会再来吧!'
+    return render_template('error.html', **d), 500
+
 if __name__ == '__main__':
-	app.run(debug=True)
+	app.run()
+	#app.run(debug=True)
 

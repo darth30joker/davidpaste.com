@@ -44,6 +44,12 @@ body {
 #captcha {
     width:100px;
 }
+
+.error {
+    color: red;
+    font-size: 20px;
+    margin: 120px 0 0 180px;
+}
 /** top **/
 div#top {
     height:73px;
@@ -175,4 +181,7 @@ div#top ul li {
 #code_view .source {
     overflow:auto;
     width:650px;
+}
+#code_view pre {
+	padding-left:5px;
 }
