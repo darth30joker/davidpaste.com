@@ -1,7 +1,7 @@
 #!/usr/bin/python
 #-*-coding:utf-8-*-
 
-from flask import Module, request, session, url_for, redirect, render_template
+from flask import Module, request, session, url_for, redirect, render_template, abort
 from pygments import highlight
 from pygments.lexers import get_lexer_by_name
 from pygments.formatters import HtmlFormatter
@@ -56,7 +56,11 @@ def create():
 
 @pasteapp.route('/view/<paste_id>')
 def view(paste_id):
-    if isinstance(paste_id, int):
+    try:
+        paste_id = int(paste_id)
+    except:
+        abort(404)
+    else:
         try:
             model = db_session.query(Paste).filter(Paste.id==paste_id).one()
         except:
@@ -67,4 +71,5 @@ def view(paste_id):
             d['code'] = highlight(model.content, lexer, formatter)
             d['model'] = model
             return render_template('pasteapp/view.html', **d)
-    abort(404)
+        else:
+            abort(404)

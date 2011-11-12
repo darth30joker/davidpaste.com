@@ -73,6 +73,6 @@ def page_error(error):
     return render_template('error.html', **d), 500
 
 if __name__ == '__main__':
-	app.run()
-	#app.run(debug=True)
+	#app.run()
+	app.run(debug=True)
 
