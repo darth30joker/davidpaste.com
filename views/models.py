@@ -93,14 +93,33 @@ if __name__ == '__main__':
 
     syntax_dict = {'python':'Python',
                    'c':'C',
-                   'html':'HTML',
-                   'html':'XHTML',
+                   'html':('HTML', 'XHTML'),
                    'javascript':('JavaScript', 'JScript'),
                    'css':'CSS',
-                   'c#':'C#',
-                   }
+                   'actionscript':'ActionScript',
+                   'applescript':'AppleScript',
+                   'awk':'Awk',
+                   'erlang':'Erlang',
+                   'delphi':'Delphi',
+                   'groovy':'Groovy',
+                   'haskell':'Haskell',
+                   'lua':'Lua',
+                   'objective-c':'Objective-C',
+                   'php':'PHP',
+                   'perl':'Perl',
+                   'ruby':'Ruby',
+                   'scala':'Scala',
+                   'sql':'SQL',
+                   'diff':'Diff Files',
+                   'xml':'XML',
+                   'yaml':'YAML',
+                   'java': 'JAVA',
+                   'bash':'Bash',
+                   'c#':'C#'}
 
-    for key in syntax_dict:
+    keys = syntax_dict.keys()
+    keys.sort()
+    for key in keys:
         value = syntax_dict[key]
         if isinstance(value, tuple):
             for name in value:
@@ -109,4 +128,8 @@ if __name__ == '__main__':
         if isinstance(value, str):
             syntax = Syntax(value, key)
             db_session.add(syntax)
+    db_session.commit()
+
+    user = User(u'未知用户', 'unknown@davidpaste.com',  hashlib.md5('com.davidpaste').hexdigest())
+    db_session.add(user)
     db_session.commit()
