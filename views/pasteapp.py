@@ -29,7 +29,7 @@ def getTagObject(tag_name):
         tag.times = tag.times + 1
     return tag
 
-@pasteapp.route('/create/', methods=['GET', 'POST'])
+@pasteapp.route('/create', methods=['GET', 'POST'])
 def create():
     form = PasteForm(request.form, csrf_enabled=False)
     if request.method == 'POST' and form.validate_on_submit() and form.captcha.data.lower() == session['captcha'].lower():
@@ -54,7 +54,7 @@ def create():
     d['t'] = str(int(time.time()))
     return render_template('pasteapp/create.html', **d)
 
-@pasteapp.route('/view/<paste_id>/')
+@pasteapp.route('/view/<paste_id>')
 def view(paste_id):
     paste_id = int(paste_id, 16)
     try:

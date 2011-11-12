@@ -37,7 +37,7 @@ def index():
     d['syntax_list'] = getSyntaxList()
     return render_template('pasteapp/create.html', **d)
 
-@app.route('/captcha/')
+@app.route('/captcha')
 def captcha():
     captcha = getCaptcha()
     session['captcha'] = captcha[0]

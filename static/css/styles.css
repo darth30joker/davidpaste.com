@@ -125,6 +125,8 @@ div#top ul li {
 
 }
 #paste_new h2 {
+	margin-left:20px;
+	margin-top:20px;
     border-bottom:1px dashed #ccc;
     margin-bottom:10px;
 }
@@ -138,6 +140,10 @@ div#top ul li {
     margin:20px;
 }
 
+.errors {
+	color:red;
+	margin:10px 0 10px 20px;
+}
 /** paste view **/
 #paste_view {
     margin:20px 0 20px 20px;

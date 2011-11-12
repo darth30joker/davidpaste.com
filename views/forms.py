@@ -29,7 +29,7 @@ class RegisterForm(Form):
         Required(),
         EqualTo('password', message=u'密码必须相同')
         ])
-    recaptcha = RecaptchaField()
+    captcha = TextField(u'验证码', [Required()])
 
 class LoginForm(Form):
     email = TextField(u'邮件地址', [
@@ -39,12 +39,12 @@ class LoginForm(Form):
     password = PasswordField(u'密码', [
         Length(min=6, max=12),
         Required()])
-    recaptcha = RecaptchaField()
+    captcha = TextField(u'验证码', [Required()])
 
 class PasteForm(Form):
     title = TextField(u'标题')
     syntax = SelectField(u'语法', choices=getSyntaxList(), coerce=int)
-    content = TextAreaField(u'代码', [Required()])
+    content = TextAreaField(u'代码', [Required(message=u"代码不能为空")])
     tag = TextField(u'标签')
     captcha = TextField(u'验证码', [Required()])
 
