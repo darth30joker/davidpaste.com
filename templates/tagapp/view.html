@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}{{ tag.name }}{% endblock %}
+{% block content %}
+<div id="tag_view">
+    <ul>{% for paste in pastes %}
+        <li><a href="{{ url_for('pasteapp.view', paste_id=paste.id) }}">{{ paste.title }} @ {{ paste.created_time | dateformat }} </a></li>
+        {% endfor %}</ul>
+</div>
+{% endblock %}

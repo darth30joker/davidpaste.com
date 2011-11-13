@@ -43,7 +43,7 @@ def captcha():
     session['captcha'] = captcha[0]
     return send_file(captcha[1], mimetype='image/gif')
 
-@app.route('/page/about')
+@app.route('/about')
 def about():
     return render_template('about.html')
 

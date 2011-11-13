@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}关于大卫粘贴{% endblock %}
+{% block content %}
+<div id="about">
+    <p>大卫粘贴是一个什么样的网站呢? 我很难用一句话来形容.</p>
+    <ul>
+        <li>Ver 0.3功能
+        <ol>
+            <li>使用flask重写</li>
+            <li>使用pygments做代码高亮</li>
+            <li>标签功能</li>
+            <li>收藏功能</li>
+        </ol>
+        </li>
+
+        <li>Ver 0.2及以前
+        <ol>
+            <li>使用django做整站架构</li>
+            <li>使用javascript做代码高亮</li>
+            <li>用户可以选择注册, 拥有修改代码的功能</li>
+        </ol>
+        </li>
+    </ul>
+</div>
+{% endblock %}
