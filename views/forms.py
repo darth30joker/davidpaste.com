@@ -17,7 +17,7 @@ def email_unique(form, field):
         raise ValidationError(u'这个邮件地址已经有人注册了.')
 
 class RegisterForm(Form):
-    nickname = TextField(u'昵称', [Length(min=4, max=12)])
+    nickname = TextField(u'昵称', [Required(), Length(min=4, max=12)])
     email = TextField(u'邮件地址', [
         Length(min=6, max=30),
         Email(),

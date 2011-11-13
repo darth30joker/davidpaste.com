@@ -4,7 +4,7 @@ a {
 }
 
 body {
-    background:#E3E3E3;
+    background:url('/static/images/header_bg.png') repeat-x #fff;
 }
 
 /** form **/
@@ -52,14 +52,7 @@ body {
 }
 /** top **/
 div#top {
-    height:73px;
-    background:url('/static/images/header_bg.png') repeat-x;
-    border-left:2px solid #AAAAAA;
-    border-right:2px solid #AAAAAA;
-    -moz-border-radius-bottomleft:5px;
-    -moz-border-radius-bottomright:5px;
-    -webkit-border-radius-bottomleft:5px;
-    -webkit-border-radius-bottomright:5px;
+    height:60px;
 }
 
 div#top h1 {
@@ -89,9 +82,12 @@ div#top ul li {
 /** foot **/
 #footer {
 	margin-bottom:50px;
+	border-top:2px solid #999;
+	padding-top:10px;
+	font-size:14px;
 }
 
-#footer a {
+#footer p > a {
 	margin-right:10px;
 }
 
@@ -107,6 +103,10 @@ div#top ul li {
 #footer p span {
 	float:right;
 }
+#footer p span a:link,
+#footer p span a:visited {
+	color:#a15700;
+}
 
 /** side bar **/
 #sidebar {
@@ -116,14 +116,10 @@ div#top ul li {
 
 /** content **/
 #container {
-    border: 2px solid #AAAAAA;
-    -moz-border-radius:5px;
-    -webkit-border-radius:5px;
     min-height:300px;
     background:white;
-    margin-top:20px;
     margin-bottom:20px;
-	background: none repeat scroll 0 0 #DFDFDF;
+	background: url('/static/images/container_bg.png') no-repeat scroll 0 0;
 }
 
 /** new paste page **/
@@ -157,19 +153,29 @@ div#top ul li {
 #paste_view h1,
 #paste_view h3 {
 	margin-left:30px;
-	margin-bottom:20px;
+	margin-bottom:10px;
 }
 #paste_view h1 {
-	font-size:18px;
+	font-size:25px;
+	font-family:'Heiti';
+}
+#paste_view h1 span {
+	font-size:14px;
+	color:#ccc;
+	margin-left:10px;
 }
 #paste_view h3 {
 	font-size:14px;
+	color:#333;
 }
 #paste_view h3 a {
-	margin-right:10px;
+	margin-right:15px;
 }
 #paste_view h3 a:link,
 #paste_view h3 a:visited {
+	color:#333;
+}
+#paste_view h3 a:hover {
 	color:red;
 }
 #code_view {
