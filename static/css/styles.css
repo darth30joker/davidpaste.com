@@ -122,6 +122,10 @@ div#top ul li {
     background:white;
     margin-bottom:20px;
 	background: url('/static/images/container_bg.png') no-repeat scroll 0 0;
+    padding:20px 0;
+}
+#wrapper {
+	margin-left:40px;
 }
 
 /** new paste page **/
@@ -150,7 +154,6 @@ div#top ul li {
 }
 /** paste view **/
 #paste_view {
-    margin:20px 0 20px 20px;
 }
 #paste_view h1,
 #paste_view h3 {
