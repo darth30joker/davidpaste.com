@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}注册新用户{% endblock %}
+{% block content %}
+<div id="register">
+    <form class="form" action="{{ url_for('userapp.register') }}" method="POST">
+        <p><label>{{ form.email.label }}</label>{{ form.email }}</p>
+        <p><label>{{ form.nickname.label }}</label>{{ form.nickname }}</p>
+        <p><label>{{ form.password.label }}</label>{{ form.password }}</p>
+        <p><label>{{ form.password_confirm.label }}</label>{{ form.password_confirm }}</p>
+        <p><label>{{ form.captcha.label }}</label>{{ form.captcha }}<img src="/captcha?t={{ t }}" style="position: absolute;margin-left: 10px;" /></p>
+        <p><label></label><input type="submit" class="submit button" value="注册" /></p>
+    </form>
+</div>
+{% endblock %}

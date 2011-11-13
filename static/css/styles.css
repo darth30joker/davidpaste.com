@@ -118,7 +118,7 @@ div#top ul li {
 
 /** content **/
 #container {
-    min-height:300px;
+    min-height:450px;
     background:white;
     margin-bottom:20px;
 	background: url('/static/images/container_bg.png') no-repeat scroll 0 0;
