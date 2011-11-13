@@ -137,6 +137,7 @@ div#top ul li {
 	margin-top:20px;
     border-bottom:1px dashed #ccc;
     margin-bottom:10px;
+	font-family:'Heiti';
 }
 #paste_new form p textarea {
     margin-left:20px;
@@ -195,4 +196,16 @@ div#top ul li {
 }
 #code_view pre {
 	padding-left:5px;
+}
+
+/** tag view page **/
+#tag_view a {
+	font-size:14px;
+}
+#tag_view a:link,
+#tag_view a:visited {
+	color:#333;
+}
+#tag_view a:hover {
+	color:black;
 }
