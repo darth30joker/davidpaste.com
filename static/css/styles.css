@@ -70,6 +70,8 @@ div#top span {
 	float: left;
     margin-left: 135px;
     margin-top: 33px;
+	color: white;
+    font-weight: bold;
 }
 div#top ul {
     float:right;
