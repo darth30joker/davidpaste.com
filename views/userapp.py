@@ -27,7 +27,10 @@ def login():
 
 @userapp.route('/logout/', methods=['GET'])
 def logout():
-    pass
+    if 'user' in session:
+        session['user'] = None
+        del(session['user'])
+    return redirect('/')
 
 @userapp.route('/register/', methods=['GET', 'POST'])
 def register():
