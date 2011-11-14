@@ -1,15 +1,17 @@
 #!/usr/bin/python
 #-*-coding:utf-8-*-
 
-from flask import Module, request, session, url_for, redirect, render_template, abort
+from flask import Module, request, session, url_for, redirect, render_template, abort, send_file
 from pygments import highlight
 from pygments.lexers import get_lexer_by_name
-from pygments.formatters import HtmlFormatter
+from pygments.formatters import HtmlFormatter, ImageFormatter
 from database import db_session
 from forms import *
 from models import *
 from functions import *
 import time
+import Image, ImageDraw, ImageFont, cStringIO
+from StringIO import StringIO
 
 pasteapp = Module(__name__)
 d = {}
@@ -73,9 +75,17 @@ def view(paste_id):
         if model:
             model.views = model.views + 1
             lexer = get_lexer_by_name(model.syntax.syntax, stripall=True)
-            formatter = HtmlFormatter(linenos='table', cssclass="source")
-            d['code'] = highlight(model.content, lexer, formatter)
-            d['model'] = model
-            return render_template('pasteapp/view.html', **d)
+            output = request.args.get('output', 'html')
+            if output == 'html':
+                formatter = HtmlFormatter(linenos='table', cssclass="source")
+                d['code'] = highlight(model.content, lexer, formatter)
+                d['model'] = model
+                return render_template('pasteapp/view.html', **d)
+            if output == 'image':
+                formatter = ImageFormatter(image_format='png', font_name='DejaVu Sans MONO', line_numbers=True, unicodeoutput=True)
+                f = StringIO()
+                highlight(model.content, lexer, formatter, outfile=f)
+                f.seek(0)
+                return send_file(f, mimetype="image/png")
         else:
             abort(404)
