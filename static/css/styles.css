@@ -75,10 +75,18 @@ div#top span {
 }
 div#top ul {
     float:right;
+    font-size: 12px;
+    margin-top: 40px;
+    color:white;
 }
 
 div#top ul li {
     display:inline;
+}
+
+div#top ul li a:link,
+div#top ul li a:visited {
+    color:white;
 }
 
 /** foot **/
@@ -207,4 +215,16 @@ div#top ul li {
 }
 #tag_view a:hover {
 	color:black;
+}
+
+/** register page **/
+#register {
+    margin-left: 30px;
+    margin-top: 40px;
+}
+#register h1 {
+    font-size:23px;
+    border-bottom:1px dashed #ccc;
+    margin-bottom:20px;
+    padding-bottom:20px;
 }

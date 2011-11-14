@@ -17,17 +17,16 @@
     <body>
         <div id="top" class="container_12">
 			<h1 class="grid_2 alpha" id="website_logo"><a href="/">DAVIDPASTE</a></h1><span>Ver 0.3</span>
-			<!--<ul class="grid_4 omega" id="website_menu">
+			<ul class="grid_3 omega" id="website_menu">
                 <li><a href="{{ url_for('tagapp.list') }}">标签</a></li>
                 {% if session['user'] %}
-                <li><a href="{{ url_for('userapp.view', id=session['user']['id']) }}"><!--<img src="http://www.gravatar.com/avatar/{{ session['user']['email'] | avatar }}?s=14" /> -->{{ session['user']['nickname'] }}</a></li>
-                    <li><a href="/user/manage/">管理</a></li>
+                <li>{{ session['user']['nickname'] }}</li>
                     <li><a href="{{ url_for('userapp.logout') }}">登出</a></li>
                 {% else %}
                     <li><a href="{{ url_for('userapp.register') }}">注册</a></li>
                     <li><a href="{{ url_for('userapp.login') }}">登入</a></li>
                 {% endif %}
-			</ul>-->
+			</ul>
         </div>
         <div id="container" class="container_12">
             <div id="wrapper" class="grid_9">{% block content %}{% endblock %}</div>

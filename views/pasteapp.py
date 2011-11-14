@@ -38,6 +38,7 @@ def create():
         else:
             user_id = 1
         model = Paste(form.syntax.data, form.title.data, form.content.data)
+        model.user_id = user_id
         if form.title.data:
             model.title = form.title.data
         else:

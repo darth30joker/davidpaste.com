@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}登陆{% endblock %}
+{% block content %}
+<div id="register">
+	<h1>登陆</h1>
+	{% if form.errors %}
+	<p class="errors">嗨, buddy, 有数据写错了. 检查下email地址, 密码(6-12个字符), 还有, 别忘了写验证码哦.</p>
+	{% endif %}
+    <form class="form" action="{{ url_for('userapp.login') }}" method="POST">
+        <p><label>{{ form.email.label }}</label>{{ form.email }}</p>
+        <p><label>{{ form.password.label }}</label>{{ form.password }}</p>
+        <p><label>{{ form.captcha.label }}</label>{{ form.captcha }}<img src="/captcha" style="position: absolute;margin-left: 10px;" /></p>
+        <p><label></label><input type="submit" class="submit button" value="登陆" /></p>
+    </form>
+</div>
+{% endblock %}

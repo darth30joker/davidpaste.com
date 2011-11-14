@@ -50,7 +50,7 @@ def about():
 @app.before_request
 def before_request():
     d['session'] = session
-    d['tags'] = getTags()
+    #d['tags'] = getTags()
 
 @app.after_request
 def after_request(response):
