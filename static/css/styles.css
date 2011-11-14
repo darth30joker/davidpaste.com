@@ -228,3 +228,8 @@ div#top ul li a:visited {
     margin-bottom:20px;
     padding-bottom:20px;
 }
+
+/** rank page **/
+div.rank {
+    float:left;
+}

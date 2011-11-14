@@ -39,6 +39,10 @@ def create():
             user_id = 1
         model = Paste(form.syntax.data, form.title.data, form.content.data)
         model.user_id = user_id
+        if user_id != 1:
+            user = db_session.query(User).get(user_id)
+            user.paste_num = user.paste_num + 1
+            db_session.add(user)
         if form.title.data:
             model.title = form.title.data
         else:

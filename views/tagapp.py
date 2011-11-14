@@ -11,7 +11,10 @@ d = {}
 
 @tagapp.route('/list', methods=['GET'])
 def list():
-    pass
+    if request.method == 'GET':
+        tags = db_session.query(Tag).order_by('name ASC').all()[:20]
+        d['tags'] = tags
+        return render_template('tagapp/list.html', **d)
 
 @tagapp.route('/<tag_name>', methods=['GET', 'POST'])
 def view(tag_name):

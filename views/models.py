@@ -20,6 +20,7 @@ class User(Base):
     email = Column(String(45), unique=True) # 登陆使用的
     nickname = Column(String(45)) # 显示时用的
     password = Column(String(45))
+    paste_num = Column(Integer, default=0)
     created_time = Column(DateTime, default=datetime.now())
     modified_time = Column(DateTime, default=datetime.now())
 

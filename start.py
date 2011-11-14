@@ -10,6 +10,7 @@ from flask import Flask, request, render_template, session, Response, send_file
 from views.pasteapp import pasteapp
 from views.userapp import userapp
 from views.tagapp import tagapp
+from views.rankapp import rankapp
 from views.database import db_session
 from views.forms import PasteForm
 #from utils import getCaptcha
@@ -24,6 +25,7 @@ app.config.from_object(__name__)
 app.register_module(pasteapp, url_prefix="/paste")
 app.register_module(userapp, url_prefix="/user")
 app.register_module(tagapp, url_prefix="/tag")
+app.register_module(rankapp, url_prefix="/rank")
 app.secret_key = 'sdaghasdhsdh2346234uyqahg'
 app.jinja_env.filters['dateformat'] = dateformat
 app.jinja_env.filters['avatar'] = avatar
