@@ -86,6 +86,9 @@ def view(paste_id):
                 f = StringIO()
                 highlight(model.content, lexer, formatter, outfile=f)
                 f.seek(0)
+                if request.args.get('attachment', 'false').lower() == 'true':
+                    return send_file(f, mimetype="image/png", as_attachment=True,
+                            attachment_filename='davidpaste_%s.png' % model.id)
                 return send_file(f, mimetype="image/png")
         else:
             abort(404)

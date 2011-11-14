@@ -2,8 +2,9 @@
 {% block title %}{{ model.title }}{% endblock %}
 {% block content %}
 <div id="paste_view">
-	<h1>{{ model.title }}<span>{{ model.created_time | dateformat }}</span></h1>
+    <h1>{{ model.title }}<span>{{ model.created_time | dateformat }}</span></h1>
     <h3>tags: {% for tag in model.tags %}<a href="/tag/{{ tag.name }}">{{ tag.name }}</a>{% endfor %}</h3>
+    <h4><a href="{{ url_for('pasteapp.view', paste_id=model.id) }}?output=image&attachment=true">保存成png图片</a></h4>
     <div id="code_view">{{ code | safe }}</div>
 </div>
 {% endblock %}
