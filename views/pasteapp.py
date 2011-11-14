@@ -67,6 +67,7 @@ def view(paste_id):
         except:
             model = None
         if model:
+            model.views = model.views + 1
             lexer = get_lexer_by_name(model.syntax.syntax, stripall=True)
             formatter = HtmlFormatter(linenos='table', cssclass="source")
             d['code'] = highlight(model.content, lexer, formatter)

@@ -71,6 +71,7 @@ class Paste(Base):
     syntax_id = Column(Integer, ForeignKey('syntax.id'))
     title = Column(String(45), default=u'未知标题')
     content = Column(Text)
+    views = Column(Integer, default=0)
     created_time = Column(DateTime, default=datetime.now())
     modified_time = Column(DateTime, default=datetime.now())
 
