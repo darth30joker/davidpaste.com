@@ -24,6 +24,7 @@ body {
     margin-right:10px;
     margin-bottom:5px;
     text-align:right;
+    font-size:14px;
 }
 
 .form p input {
@@ -39,6 +40,12 @@ body {
 .form p textarea {
     width:500px;
     height:450px;
+}
+
+.form p > span {
+    font-size:14px;
+    color:#aaa;
+    margin-left:20px;
 }
 
 #captcha {
