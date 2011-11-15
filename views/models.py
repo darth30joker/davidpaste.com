@@ -7,6 +7,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from database import engine
 from datetime import datetime
 import hashlib
+import random
 
 __all__ = ['User', 'Syntax', 'Paste', 'Tag']
 
@@ -132,6 +133,7 @@ if __name__ == '__main__':
             db_session.add(syntax)
     db_session.commit()
 
-    user = User(u'未知用户', 'unknown@davidpaste.com',  hashlib.md5('com.davidpaste').hexdigest())
+    password = ''.join([random.choice('abcdefghij') for i in range(10)])
+    user = User(u'未知用户', 'unknown@davidpaste.com',  hashlib.md5(password).hexdigest())
     db_session.add(user)
     db_session.commit()
