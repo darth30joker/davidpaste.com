@@ -242,4 +242,45 @@ div#top ul li a:visited {
 /** rank page **/
 div.rank {
     float:left;
+    margin-bottom:20px;
+}
+div.rank h2 {
+    font-size:18px;
+    border-bottom:1px dashed #ccc;
+    padding-bottom:5px;
+}
+div.rank ul li {
+    margin-top:10px;
+    font-size:16px;
+}
+div.rank ul li a {
+    font-size:16px;
+    margin-right:20px;
+}
+div.rank ul li a:link,
+div.rank ul li a:visited {
+    color:#7d2a0e;
+}
+div.rank ul li a.tag {
+    font-size:14px;
+    margin-right:5px;
+}
+div.rank ul li span {
+    float:right;
+    color:#aaa;
+    font-size:14px;
+}
+div.rank a.tag {
+    font-size:16px;
+    margin-right:10px;
+}
+div.rank ul li a.tag:link,
+div.rank ul li a.tag:visited,
+div.rank a.tag:link,
+div.rank a.tag:visited {
+    color:black;
+}
+div.rank ul li a.tag:hover,
+div.rank a.tag:hover {
+    color:red;
 }
