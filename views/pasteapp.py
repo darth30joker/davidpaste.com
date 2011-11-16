@@ -18,7 +18,7 @@ d = {}
 
 def getTagObject(tag_name):
     try:
-        tag = db_session.query(Tag).filter('LOWER(tags.name) = "%s"' % tag_name.lower()).one()
+        tag = db_session.query(Tag).filter("LOWER(tags.name) = '%s'" % tag_name.lower()).one()
     except Exception, e:
         tag = Tag(tag_name)
         db_session.add(tag)
@@ -43,7 +43,7 @@ def create():
         model.user_id = user_id
         if user_id != 1:
             user = db_session.query(User).get(user_id)
-            user.paste_num = user.paste_num + 1
+            user.paste_num = int(user.paste_num) + 1
             db_session.add(user)
         if form.title.data:
             model.title = form.title.data
@@ -54,7 +54,7 @@ def create():
             db_session.commit()
             updateTags(db_session, model, form.tag.data.strip().split())
         except Exception, e:
-            pass
+            return str(e)
         else:
             return redirect(url_for('view', paste_id=model.id))
     d['form'] = form

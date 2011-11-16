@@ -39,7 +39,7 @@ def updateTags(db_session, model, tags=[]):
     tags_to_del = set(old_tags) - set(tags)
     if len(tags_to_add):
         for tag in tags_to_add:
-            t = db_session.query(Tag).filter('LOWER(name)="%s"' % tag.strip().lower()).first()
+            t = db_session.query(Tag).filter("LOWER(name)='%s'" % tag.strip().lower()).first()
             if not t:
                 t = Tag(tag.strip())
             else:
@@ -47,7 +47,7 @@ def updateTags(db_session, model, tags=[]):
             model.tags.append(t)
             db_session.add(model)
     for tag in tags_to_del:
-        t = db_session.query(Tag).filter('LOWER(name)="%s"' % tag.strip().lower()).first()
+        t = db_session.query(Tag).filter("LOWER(name)='%s'" % tag.strip().lower()).first()
         if t:
             model.tags.remove(t)
             t.times = t.times - 1
@@ -55,4 +55,5 @@ def updateTags(db_session, model, tags=[]):
     try:
         db_session.commit()
     except Exception, e:
+        print str(e)
         db_session.rollback()
