@@ -52,8 +52,5 @@ def updateTags(db_session, model, tags=[]):
             model.tags.remove(t)
             t.times = t.times - 1
             db_session.add(model)
-    try:
+    if tags_to_add or tags_to_del:
         db_session.commit()
-    except Exception, e:
-        print str(e)
-        db_session.rollback()

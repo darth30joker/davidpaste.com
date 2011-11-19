@@ -54,7 +54,7 @@ def create():
             db_session.commit()
             updateTags(db_session, model, form.tag.data.strip().split())
         except Exception, e:
-            return str(e)
+            abort(500)
         else:
             return redirect(url_for('view', paste_id=model.id))
     d['form'] = form

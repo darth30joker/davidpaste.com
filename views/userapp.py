@@ -13,16 +13,21 @@ d = {}
 
 @userapp.route('/login/', methods=['GET', 'POST'])
 def login():
+    errors = False
     form = LoginForm(request.form, csrf_enabled=False)
     if request.method == 'POST' and form.validate_on_submit() and form.captcha.data.lower() == session['captcha'].lower():
-        user = db_session.query(User).filter_by(email=form.email.data,
+        try:
+            user = db_session.query(User).filter_by(email=form.email.data,
                 password=hashlib.md5(form.password.data).hexdigest()).one()
+        except:
+            user = None
         if user:
             session['user'] = {'id':user.id, 'nickname':user.nickname, 'email':user.email}
             return redirect('/')
         else:
-            form.errors = True
+            errors = True
     d['form'] = form
+    d['errors'] = errors
     return render_template('userapp/login.html', **d)
 
 @userapp.route('/logout/', methods=['GET'])

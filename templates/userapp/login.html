@@ -3,7 +3,7 @@
 {% block content %}
 <div id="register">
 	<h1>登陆</h1>
-	{% if form.errors %}
+	{% if errors %}
 	<p class="errors">嗨, buddy, 有数据写错了. 检查下email地址, 密码(6-12个字符), 还有, 别忘了写验证码哦.</p>
 	{% endif %}
     <form class="form" action="{{ url_for('userapp.login') }}" method="POST">
