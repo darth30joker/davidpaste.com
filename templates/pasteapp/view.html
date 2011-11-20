@@ -3,8 +3,8 @@
 {% block content %}
 <div id="paste_view">
     <h1>{{ model.title }}<span>{{ model.created_time | dateformat }}</span></h1>
-    <h3>tags: {% for tag in model.tags %}<a href="/tag/{{ tag.name }}">{{ tag.name }}</a>{% endfor %}</h3>
-    <h4><a href="{{ url_for('pasteapp.view', paste_id=model.id) }}?output=image&attachment=true">保存成png图片</a></h4>
+    <h3>{% for tag in model.tags %}<a href="/tag/{{ tag.name }}" class="btn small tag">{{ tag.name }}</a>{% endfor %}</h3>
+    <h4><a href="{{ url_for('pasteapp.view', paste_id=model.id) }}?output=image&attachment=true" class="btn" style="margin-bottom:5px;">保存成png图片</a></h4>
     <h4><script type="text/javascript" charset="utf-8">
 (function(){
   var _w = 106 , _h = 24;

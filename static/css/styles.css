@@ -186,20 +186,7 @@ div#top ul li a:visited {
 	color:#ccc;
 	margin-left:10px;
 }
-#paste_view h3 {
-	font-size:14px;
-	color:#333;
-}
-#paste_view h3 a {
-	margin-right:15px;
-}
-#paste_view h3 a:link,
-#paste_view h3 a:visited {
-	color:#333;
-}
-#paste_view h3 a:hover {
-	color:red;
-}
+
 #paste_view h4 {
     font-size: 16px;
     margin-left: 30px;
