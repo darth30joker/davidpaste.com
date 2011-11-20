@@ -17,6 +17,12 @@ a.tag {
 .tag {
     background-color:#fb9700;
     background-image:-moz-linear-gradient(center top , #fb9700, #fb9700 25%, #fb9900);
+    background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#fb9700), color-stop(25%, #fb9700), to(#fb9900));
+    background-image:-webkit-linear-gradient(#fb9700, #fb9700 25%, #fb9900);
+    background-image:-ms-linear-gradient(#fb9700, #fb9700 25%, #fb9900);
+    background-image:-o-linear-gradient(#fb9700, #fb9700 25%, #fb9900);
+    background-image:linear-gradient(#fb9700, #fb9700 25%, #fb9900);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb9700', endColorstr='#fb9900', GradientType=0);
 }
 /** form **/
 .form p {
