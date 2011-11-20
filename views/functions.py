@@ -41,7 +41,7 @@ def updateTags(db_session, model, tags=[]):
         for tag in tags_to_add:
             t = db_session.query(Tag).filter("LOWER(name)='%s'" % tag.strip().lower()).first()
             if not t:
-                t = Tag(tag.strip())
+                t = Tag(tag.strip("'\", ").lower().replace(",", '').replace("_", '-'))
             else:
                 t.times = t.times + 1
             model.tags.append(t)
