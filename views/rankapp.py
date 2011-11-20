@@ -13,6 +13,7 @@ d = {}
 def rank():
     #users = db_session.query(User, Paste).filter_by()
     d['top_tags'] = db_session.query(Tag).order_by('times DESC').all()[:20]
-    d['top_pastes'] = db_session.query(Paste).order_by('views DESC').all()[:20]
+    d['top_pastes'] = db_session.query(Paste).order_by('views DESC').all()[:10]
+    d['new_pastes'] = db_session.query(Paste).order_by('created_time DESC').all()[:10]
     d['top_users'] = db_session.query(User).order_by('paste_num DESC').all()[:20]
     return render_template('rankapp/rank.html', **d)

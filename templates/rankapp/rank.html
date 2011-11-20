@@ -1,23 +1,30 @@
 {% extends 'base.html' %}
 {% block title %}排行榜{% endblock %}
 {% block content %}
-<div class="rank grid_8">
+<div class="rank span11">
+    <h2>最新添加代码</h2>
+    <ul>{% for paste in new_pastes %}
+        <li><a href="{{ url_for('pasteapp.view', paste_id=paste.id) }}">{{ paste.title }}</a>{% for tag in paste.tags %}<a href="{{ url_for('tagapp.view', tag_name=tag.name) }}" class="tag">{{ tag.name }}</a>{% endfor %}<span>{{ paste.created_time | dateformat }}<span></li>
+        {% endfor %}</ul>
+</div>
+<div class="rank span11">
     <h2>访问最多代码</h2>
     <ul>{% for paste in top_pastes %}
         <li><a href="{{ url_for('pasteapp.view', paste_id=paste.id) }}">{{ paste.title }}</a>{% for tag in paste.tags %}<a href="{{ url_for('tagapp.view', tag_name=tag.name) }}" class="tag">{{ tag.name }}</a>{% endfor %}<span>{{ paste.created_time | dateformat }}<span></li>
         {% endfor %}</ul>
 </div>
-<div class="rank grid_4">
-    <h2>最活跃用户</h2>
-    <ul>{% for user in top_users %}
-        <li>{{ user.nickname }}<span>{{ user.created_time | dateformat }}</span></li>
-        {% endfor %}</ul>
+<div class="row">
+    <div class="rank span6">
+        <h2>最活跃用户</h2>
+        <ul>{% for user in top_users %}
+            <li>{{ user.nickname }}<span>{{ user.created_time | dateformat }}</span></li>
+            {% endfor %}</ul>
+    </div>
+    <div class="rank span5">
+        <h2>最受欢迎标签</h2>
+        {% for tag in top_tags %}
+            <a href="{{ url_for('tagapp.view', tag_name=tag.name) }}" class="tag">{{ tag.name }}</a>
+        {% endfor %}
+    </div>
 </div>
-<div class="rank grid_4">
-    <h2>最受欢迎标签</h2>
-    {% for tag in top_tags %}
-        <a href="{{ url_for('tagapp.view', tag_name=tag.name) }}" class="tag">{{ tag.name }}</a>
-    {% endfor %}
-</div>
-
 {% endblock %}

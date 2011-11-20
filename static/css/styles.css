@@ -1,5 +1,5 @@
 /** **/
-a {
+a:hover {
     text-decoration:none;
 }
 
@@ -10,7 +10,6 @@ body {
 /** form **/
 .form p {
     clear:both;
-    line-height:25px;
 }
 
 .form p label,
@@ -20,32 +19,14 @@ body {
 }
 
 .form p label {
-    width:100px;
     margin-right:10px;
-    margin-bottom:5px;
+    margin-bottom:15px;
     text-align:right;
-    font-size:14px;
-}
-
-.form p input {
-    width:400px;
-    height:18px;
-}
-
-.form p select {
-    width:209px;
-    height:28px;
 }
 
 .form p textarea {
     width:500px;
     height:450px;
-}
-
-.form p > span {
-    font-size:14px;
-    color:#aaa;
-    margin-left:20px;
 }
 
 #captcha {
@@ -63,9 +44,9 @@ div#top {
 }
 
 div#top h1 {
-    width:18px;
     margin-top:20px;
     margin-left:30px;
+    float:left;
 }
 
 div#top h1 a:link,
@@ -75,8 +56,8 @@ div#top h1 a:visited {
 
 div#top span {
 	float: left;
-    margin-left: 135px;
-    margin-top: 33px;
+    margin-left:35px;
+    margin-top: 36px;
 	color: white;
     font-weight: bold;
 }
@@ -85,10 +66,12 @@ div#top ul {
     font-size: 12px;
     margin-top: 40px;
     color:white;
+    text-align:right;
 }
 
 div#top ul li {
     display:inline;
+    margin-right:10px;
 }
 
 div#top ul li a:link,
@@ -150,7 +133,7 @@ div#top ul li a:visited {
 	margin-left:20px;
 	margin-top:20px;
     border-bottom:1px dashed #ccc;
-    margin-bottom:10px;
+    margin-bottom:20px;
 	font-family:'Heiti';
 }
 #paste_new form p textarea {

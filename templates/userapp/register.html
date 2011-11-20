@@ -7,12 +7,17 @@
 	<p class="errors">嗨, buddy, 有数据写错了. 检查下email地址, 昵称(3-12个字符), 密码(6-12个字符), 还有, 别忘了写验证码哦.</p>
 	{% endif %}
     <form class="form" action="{{ url_for('userapp.register') }}" method="POST">
-        <p><label>{{ form.email.label }}</label>{{ form.email }}</p>
-        <p><label>{{ form.nickname.label }}</label>{{ form.nickname }}</p>
-        <p><label>{{ form.password.label }}</label>{{ form.password }}</p>
-        <p><label>{{ form.password_confirm.label }}</label>{{ form.password_confirm }}</p>
-        <p><label>{{ form.captcha.label }}</label>{{ form.captcha }}<img src="/captcha" style="position: absolute;margin-left: 10px;" /></p>
-        <p><label></label><input type="submit" class="submit button" value="注册" /></p>
+        <p>{{ form.email.label(class="span3") }}{{ form.email(class="span6") }}</p>
+        <p><label class="span3"></label><span class="help-block">填写平常用的邮件地址</span></p>
+        <p>{{ form.nickname.label(class="span3") }}{{ form.nickname(class="span6") }}</p>
+        <p><label class="span3"></label><span class="help-block">给自己一个昵称吧, 最少3个字符, 最多12个</span></p>
+        <p>{{ form.password.label(class="span3") }}{{ form.password(class="span6") }}</p>
+        <p><label class="span3"></label><span class="help-block">密码最少6位, 最多12位</span></p>
+        <p>{{ form.password_confirm.label(class="span3") }}{{ form.password_confirm(class="span6") }}</p>
+        <p><label class="span3"></label><span class="help-block">输入和上面一样的密码</span></p>
+        <p>{{ form.captcha.label(class="span3") }}{{ form.captcha(class="span3") }}<img src="/captcha" style="position: absolute;margin-left: 10px;" /></p>
+        <p><label class="span3"></label><span class="help-block">不区分大小写</span></p>
+        <p><label class="span3"></label><input type="submit" class="btn primary" value="注册" /></p>
     </form>
 </div>
 {% endblock %}

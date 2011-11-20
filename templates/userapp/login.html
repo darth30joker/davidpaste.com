@@ -7,10 +7,11 @@
 	<p class="errors">嗨, buddy, 有数据写错了. 检查下email地址, 密码(6-12个字符), 还有, 别忘了写验证码哦.</p>
 	{% endif %}
     <form class="form" action="{{ url_for('userapp.login') }}" method="POST">
-        <p><label>{{ form.email.label }}</label>{{ form.email }}</p>
-        <p><label>{{ form.password.label }}</label>{{ form.password }}</p>
-        <p><label>{{ form.captcha.label }}</label>{{ form.captcha }}<img src="/captcha" style="position: absolute;margin-left: 10px;" /></p>
-        <p><label></label><input type="submit" class="submit button" value="登陆" /></p>
+        <p>{{ form.email.label(class="span3") }}{{ form.email(class="span6") }}</p>
+        <p>{{ form.password.label(class="span3") }}{{ form.password(class="span6") }}</p>
+        <p>{{ form.captcha.label(class="span3") }}{{ form.captcha(class="span3") }}<img src="/captcha" style="position: absolute;margin-left: 10px;" /></p>
+        <p><label class="span3"></label><span class="help-block">不区分大小写</span></p>
+        <p><label class="span3"></label><input type="submit" class="btn primary" value="登陆" /></p>
     </form>
 </div>
 {% endblock %}
