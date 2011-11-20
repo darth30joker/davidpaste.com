@@ -4,13 +4,13 @@
 <div class="rank span11">
     <h2>最新添加代码</h2>
     <ul>{% for paste in new_pastes %}
-        <li><a href="{{ url_for('pasteapp.view', paste_id=paste.id) }}">{{ paste.title }}</a>{% for tag in paste.tags %}<a href="{{ url_for('tagapp.view', tag_name=tag.name) }}" class="tag">{{ tag.name }}</a>{% endfor %}<span>{{ paste.created_time | dateformat }}<span></li>
+        <li><a href="{{ url_for('pasteapp.view', paste_id=paste.id) }}">{{ paste.title }}</a>{% for tag in paste.tags %}<a href="{{ url_for('tagapp.view', tag_name=tag.name) }}" class="btn small tag">{{ tag.name }}</a>{% endfor %}<span>{{ paste.created_time | dateformat }}<span></li>
         {% endfor %}</ul>
 </div>
 <div class="rank span11">
     <h2>访问最多代码</h2>
     <ul>{% for paste in top_pastes %}
-        <li><a href="{{ url_for('pasteapp.view', paste_id=paste.id) }}">{{ paste.title }}</a>{% for tag in paste.tags %}<a href="{{ url_for('tagapp.view', tag_name=tag.name) }}" class="tag">{{ tag.name }}</a>{% endfor %}<span>{{ paste.created_time | dateformat }}<span></li>
+        <li><a href="{{ url_for('pasteapp.view', paste_id=paste.id) }}">{{ paste.title }}</a>{% for tag in paste.tags %}<a href="{{ url_for('tagapp.view', tag_name=tag.name) }}" class="btn small tag">{{ tag.name }}</a>{% endfor %}<span>{{ paste.created_time | dateformat }}<span></li>
         {% endfor %}</ul>
 </div>
 <div class="row">
@@ -23,7 +23,7 @@
     <div class="rank span5">
         <h2>最受欢迎标签</h2>
         {% for tag in top_tags %}
-            <a href="{{ url_for('tagapp.view', tag_name=tag.name) }}" class="tag">{{ tag.name }}</a>
+            <a href="{{ url_for('tagapp.view', tag_name=tag.name) }}" class="btn small tag" style="margin-bottom:5px;">{{ tag.name }}</a>
         {% endfor %}
     </div>
 </div>

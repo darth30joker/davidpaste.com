@@ -7,6 +7,17 @@ body {
     background:url('/static/images/header_bg.png') repeat-x #fff;
 }
 
+a.tag:link,
+a.tag:visited {
+    color:#7D2A0E;
+}
+a.tag {
+    margin-right:10px;
+}
+.tag {
+    background-color:#fb9700;
+    background-image:-moz-linear-gradient(center top , #fb9700, #fb9700 25%, #fb9900);
+}
 /** form **/
 .form p {
     clear:both;
@@ -156,7 +167,7 @@ div#top ul li a:visited {
 #paste_view h1,
 #paste_view h3 {
 	margin-left:30px;
-	margin-bottom:10px;
+    margin-bottom:0;
 }
 #paste_view h1 {
 	font-size:25px;
@@ -184,8 +195,6 @@ div#top ul li a:visited {
 #paste_view h4 {
     font-size: 16px;
     margin-left: 30px;
-    margin-top: 10px;
-    margin-bottom:10px;
 }
 #paste_view h4 a:link,
 #paste_view h4 a:visited {
@@ -214,19 +223,11 @@ div#top ul li a:visited {
     background:none;
     padding:0;
     white-space:pre;
+    font-size:13px;
 }
 
 /** tag view page **/
-#tag_view a {
-	font-size:14px;
-}
-#tag_view a:link,
-#tag_view a:visited {
-	color:#333;
-}
-#tag_view a:hover {
-	color:black;
-}
+
 
 /** register page **/
 #register {
@@ -263,26 +264,9 @@ div.rank ul li a:link,
 div.rank ul li a:visited {
     color:#7d2a0e;
 }
-div.rank ul li a.tag {
-    font-size:14px;
-    margin-right:5px;
-}
+
 div.rank ul li span {
     float:right;
     color:#aaa;
     font-size:14px;
-}
-div.rank a.tag {
-    font-size:16px;
-    margin-right:10px;
-}
-div.rank ul li a.tag:link,
-div.rank ul li a.tag:visited,
-div.rank a.tag:link,
-div.rank a.tag:visited {
-    color:black;
-}
-div.rank ul li a.tag:hover,
-div.rank a.tag:hover {
-    color:red;
 }

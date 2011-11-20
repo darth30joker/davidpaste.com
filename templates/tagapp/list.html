@@ -2,8 +2,8 @@
 {% block title %}查看所有Tags{% endblock %}
 {% block content %}
 <div id="tag_view">
-    <ul>{% for tag in tags %}
-        <li><a href="{{ url_for('tagapp.view', tag_name=tag.name) }}">{{ tag.name }}</a></li>
-        {% endfor %}</ul>
+    {% for tag in tags %}
+    	<a href="{{ url_for('tagapp.view', tag_name=tag.name) }}" class="btn small tag" style="margin-bottom:5px;">{{ tag.name }}</a>
+    {% endfor %}
 </div>
 {% endblock %}
