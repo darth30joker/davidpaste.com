@@ -204,6 +204,17 @@ div#top ul li a:visited {
 #code_view pre {
 	padding-left:5px;
 }
+.sourcetable td,
+.sourcetable th {
+    padding:0;
+    border:none;
+}
+.sourcetable pre {
+    border:none;
+    background:none;
+    padding:0;
+    white-space:pre;
+}
 
 /** tag view page **/
 #tag_view a {
