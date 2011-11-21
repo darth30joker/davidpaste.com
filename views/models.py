@@ -14,24 +14,10 @@ __all__ = ['User', 'Syntax', 'Paste', 'Tag']
 Base = declarative_base()
 metadata = Base.metadata
 
-class User(Base):
-    __tablename__ = 'users'
-
-    id = Column(Integer, primary_key=True)
-    email = Column(String(45), unique=True) # 登陆使用的
-    nickname = Column(String(45)) # 显示时用的
-    password = Column(String(45))
-    paste_num = Column(Integer, default=0)
-    created_time = Column(DateTime, default=datetime.now())
-    modified_time = Column(DateTime, default=datetime.now())
-
-    def __init__(self, nickname, email, password):
-        self.nickname = nickname
-        self.email = email
-        self.password = hashlib.md5(password).hexdigest()
-
-    def __repr__(self):
-        return "<User (%s@%s)>" % (self.nickname, self.email)
+paste_user = Table('pastes_users', metadata,
+             Column('paste_id', Integer, ForeignKey('pastes.id')),
+             Column('user_id', Integer, ForeignKey('users.id')),
+        )
 
 class Syntax(Base):
     __tablename__ = 'syntax'
@@ -65,6 +51,27 @@ class Tag(Base):
     def __repr__(self):
         return "Tag <%s>" % self.name
 
+class User(Base):
+    __tablename__ = 'users'
+
+    id = Column(Integer, primary_key=True)
+    email = Column(String(45), unique=True) # 登陆使用的
+    nickname = Column(String(45)) # 显示时用的
+    password = Column(String(45))
+    paste_num = Column(Integer, default=0)
+    created_time = Column(DateTime, default=datetime.now())
+    modified_time = Column(DateTime, default=datetime.now())
+
+    favourites = relationship('Paste', secondary=paste_user, backref="users")
+
+    def __init__(self, nickname, email, password):
+        self.nickname = nickname
+        self.email = email
+        self.password = hashlib.md5(password).hexdigest()
+
+    def __repr__(self):
+        return "<User (%s@%s)>" % (self.nickname, self.email)
+
 class Paste(Base):
     __tablename__ = 'pastes'
 
@@ -90,10 +97,14 @@ class Paste(Base):
     def __repr__(self):
         return "<Paste (%s@%s)>" % (self.title, self.user_id)
 
+    def isFavourited(self, user):
+        return self in user.favourites
+
 if __name__ == '__main__':
     from database import db_session
     metadata.create_all(engine)
 
+    """
     syntax_dict = {'python':'Python',
                    'c':'C',
                    'html':('HTML', 'XHTML'),
@@ -137,3 +148,4 @@ if __name__ == '__main__':
     user = User(u'未知用户', 'unknown@davidpaste.com',  hashlib.md5(password).hexdigest())
     db_session.add(user)
     db_session.commit()
+    """

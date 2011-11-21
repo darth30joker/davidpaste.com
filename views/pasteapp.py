@@ -12,6 +12,7 @@ from functions import *
 import time
 import Image, ImageDraw, ImageFont, cStringIO
 from StringIO import StringIO
+import simplejson as json
 
 pasteapp = Module(__name__)
 d = {}
@@ -68,10 +69,15 @@ def view(paste_id):
     except:
         abort(404)
     else:
+        user_id = None
+        if 'user' in session:
+            user_id = session['user']['id']
         try:
             model = db_session.query(Paste).filter(Paste.id==paste_id).one()
+            user = db_session.query(User).get(user_id)
         except:
             model = None
+            user = None
         if model:
             model.views = model.views + 1
             lexer = get_lexer_by_name(model.syntax.syntax, stripall=True)
@@ -80,6 +86,7 @@ def view(paste_id):
                 formatter = HtmlFormatter(linenos='table', cssclass="source")
                 d['code'] = highlight(model.content, lexer, formatter)
                 d['model'] = model
+                d['user'] = user
                 return render_template('pasteapp/view.html', **d)
             if output == 'image':
                 formatter = ImageFormatter(image_format='png', font_name='DejaVu Sans MONO', line_numbers=True, unicodeoutput=True)
@@ -92,3 +99,22 @@ def view(paste_id):
                 return send_file(f, mimetype="image/png")
         else:
             abort(404)
+
+@pasteapp.route('/favourite', methods=['POST'])
+def favourite():
+    paste_id = request.form.get('id', None)
+    if paste_id and 'user' in session:
+        try:
+            paste = db_session.query(Paste).get(int(paste_id))
+            user = db_session.query(User).get(int(session['user']['id']))
+        except:
+            paste, user = None, None
+        if paste and user:
+            if paste not in user.favourites:
+                user.favourites.append(paste)
+                return json.dumps({'result':'success', 'action':'add'})
+            else:
+                user.favourites.remove(paste)
+                return json.dumps({'result':'success', 'action':'del'})
+    return json.dumps({'result':'fail'})
+

@@ -24,6 +24,12 @@ a.tag {
     background-image:linear-gradient(#fb9700, #fb9700 25%, #fb9900);
     filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb9700', endColorstr='#fb9900', GradientType=0);
 }
+
+.star {
+	width:20px;
+	cursor:pointer;
+	margin-right:2px;
+}
 /** form **/
 .form p {
     clear:both;
@@ -174,7 +180,6 @@ div#top ul li a:visited {
 }
 #paste_view h1,
 #paste_view h3 {
-	margin-left:30px;
     margin-bottom:0;
 }
 #paste_view h1 {
