@@ -16,6 +16,12 @@ def email_unique(form, field):
     if len(db_session.query(User).filter_by(email=field.data).all()) > 0:
         raise ValidationError(u'这个邮件地址已经有人注册了.')
 
+def tags_check(form, field):
+    if not field.data:
+        return True
+    if len(field.data.split(' ')) > 3:
+        raise ValidationError(u'标签不能超过3个.')
+
 class RegisterForm(Form):
     nickname = TextField(u'昵称', [Required(), Length(min=3, max=12)])
     email = TextField(u'邮件地址', [Length(min=6, max=30),
@@ -40,6 +46,6 @@ class PasteForm(Form):
     title = TextField(u'标题')
     syntax = SelectField(u'语法', choices=getSyntaxList(), coerce=int)
     content = TextAreaField(u'代码', [Required(message=u"代码不能为空")])
-    tag = TextField(u'标签')
+    tag = TextField(u'标签', [tags_check])
     captcha = TextField(u'验证码', [Required()])
 

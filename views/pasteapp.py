@@ -17,21 +17,6 @@ import simplejson as json
 pasteapp = Module(__name__)
 d = {}
 
-def getTagObject(tag_name):
-    try:
-        tag = db_session.query(Tag).filter("LOWER(tags.name) = '%s'" % tag_name.lower()).one()
-    except Exception, e:
-        tag = Tag(tag_name)
-        db_session.add(tag)
-        try:
-            db_session.commit()
-        except Exception, e:
-            db_session.rollback()
-            return None
-    else:
-        tag.times = tag.times + 1
-    return tag
-
 @pasteapp.route('/create', methods=['GET', 'POST'])
 def create():
     form = PasteForm(request.form, csrf_enabled=False)
@@ -53,7 +38,10 @@ def create():
         db_session.add(model)
         try:
             db_session.commit()
-            updateTags(db_session, model, form.tag.data.strip().split())
+            syntax = db_session.query(Syntax).get(form.syntax.data)
+            tags = form.tag.data.lower().strip().split()
+            tags.append(syntax.name)
+            updateTags(db_session, model, set(tags))
         except Exception, e:
             abort(500)
         else:
@@ -69,15 +57,12 @@ def view(paste_id):
     except:
         abort(404)
     else:
-        user_id = None
+        user_id, user = None, None
         if 'user' in session:
             user_id = session['user']['id']
-        try:
-            model = db_session.query(Paste).filter(Paste.id==paste_id).one()
+        model = db_session.query(Paste).get(paste_id)
+        if user_id:
             user = db_session.query(User).get(user_id)
-        except:
-            model = None
-            user = None
         if model:
             model.views = model.views + 1
             lexer = get_lexer_by_name(model.syntax.syntax, stripall=True)
@@ -116,5 +101,5 @@ def favourite():
             else:
                 user.favourites.remove(paste)
                 return json.dumps({'result':'success', 'action':'del'})
-    return json.dumps({'result':'fail'})
+    return json.dumps({'result':'fail', 'message': u'请先登陆!'})
 

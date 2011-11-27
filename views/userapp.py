@@ -53,4 +53,13 @@ def register():
 
 @userapp.route('/view/<user_id>', methods=['GET'])
 def view(user_id):
-    pass
+    try:
+        user_id = int(user_id)
+    except:
+        abort(404)
+    user = db_session.query(User).get(user_id)
+    if user:
+        d['user'] = user
+        d['pastes'] = db_session.query(Paste).filter_by(user_id=user.id).all()[:10]
+        return render_template('userapp/view.html', **d)
+    abort(404)

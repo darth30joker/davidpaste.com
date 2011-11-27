@@ -14,7 +14,9 @@ $(document).ready(function(){
 					} else {
 						star.attr('src', '/static/images/star_off.png');
 					}
-				}
+				} else {
+                    alert(data['message']);
+                }
 			}
 		});
 	});

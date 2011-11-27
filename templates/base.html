@@ -18,7 +18,7 @@
                 <li><a href="{{ url_for('rankapp.rank') }}">排行榜</a></li>
                 <li><a href="{{ url_for('tagapp.list') }}">标签</a></li>
                 {% if session['user'] %}
-                <li>{{ session['user']['nickname'] }}</li>
+                    <li><a href="{{ url_for('userapp.view', user_id=session['user']['id']) }}">{{ session['user']['nickname'] }}</a></li>
                     <li><a href="{{ url_for('userapp.logout') }}">登出</a></li>
                 {% else %}
                     <li><a href="{{ url_for('userapp.register') }}">注册</a></li>

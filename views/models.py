@@ -46,7 +46,7 @@ class Tag(Base):
     times = Column(Integer(11), default=1)
 
     def __init__(self, name):
-        self.name = name
+        self.name = name.lower()
 
     def __repr__(self):
         return "Tag <%s>" % self.name
@@ -62,7 +62,7 @@ class User(Base):
     created_time = Column(DateTime, default=datetime.now())
     modified_time = Column(DateTime, default=datetime.now())
 
-    favourites = relationship('Paste', secondary=paste_user, backref="users")
+    favourites = relationship('Paste', secondary=paste_user, order_by='Paste.created_time', backref="users")
 
     def __init__(self, nickname, email, password):
         self.nickname = nickname

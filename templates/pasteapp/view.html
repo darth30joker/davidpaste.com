@@ -3,29 +3,27 @@
 {% block content %}
 <div id="paste_view">
     <h1>{% if model in user.favourites %}<img src="/static/images/star_on.png" class="star" _id="{{ model.id }}" />{% else %}<img src="/static/images/star_off.png" class="star" _id="{{ model.id }}" />{% endif %}{{ model.title }}<span>{{ model.created_time | dateformat }}</span></h1>
-    <h3>{% for tag in model.tags %}<a href="/tag/{{ tag.name }}" class="btn small tag">{{ tag.name }}</a>{% endfor %}</h3>
-    <h4><a href="{{ url_for('pasteapp.view', paste_id=model.id) }}?output=image&attachment=true" class="btn" style="margin-bottom:5px;">保存成png图片</a></h4>
-    <h4><script type="text/javascript" charset="utf-8">
-(function(){
-  var _w = 106 , _h = 24;
-  var param = {
-    url:location.href,
-    type:'5',
-    count:'',
-    appkey:'',
-    title:'我在大卫粘贴<davidpaste.com>分享了代码, 来看看吧',
-    pic:'',
-    ralateUid:'',
-	language:'zh_cn',
-    rnd:new Date().valueOf()
-  }
-  var temp = [];
-  for( var p in param ){
-    temp.push(p + '=' + encodeURIComponent( param[p] || '' ) )
-  }
-  document.write('<iframe allowTransparency="true" frameborder="0" scrolling="no" src="http://hits.sinajs.cn/A1/weiboshare.html?' + temp.join('&') + '" width="'+ _w+'" height="'+_h+'"></iframe>')
-})()
-</script></h4>
+    <h4>{% for tag in model.tags %}<a href="/tag/{{ tag.name }}" class="btn small tag">{{ tag.name }}</a>{% endfor %}</h4>
+    <h4><div id="jiathis_style_32x32">
+	<a class="jiathis_button_twitter"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_tqq"></a>
+	<a class="jiathis_button_douban"></a>
+	<a class="jiathis_button_fanfou"></a>
+	<a class="jiathis_button_fb"></a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_kaixin001"></a>
+	<a class="jiathis_button_linkedin"></a>
+	<a class="jiathis_button_42qu"></a>
+	<a class="jiathis_button_tumblr"></a>
+	<a class="jiathis_button_xianguo"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a></div>
+    <script type="text/javascript">var jiathis_config = {
+            url:"http://daimaduan.com",
+            title:"我在代码段分享了这个"
+        }</script>
+<script type="text/javascript" src="http://v2.jiathis.com/code_mini/jia.js" charset="utf-8"></script></h4>
     <div id="code_view">{{ code | safe }}</div>
 </div>
 {% endblock %}
